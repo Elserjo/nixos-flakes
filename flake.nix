@@ -16,6 +16,15 @@
       ref = "release-22.11";
     };
 
+    home-manager = {
+      type = "github";
+      owner = "nix-community";
+      repo = "home-manager";
+      ref = "master";
+      inputs = {
+        nixpkgs.follows = "nixpkgs-stable";
+      };
+    };
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, ... }:
