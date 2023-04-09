@@ -21,27 +21,27 @@
       owner = "nix-community";
       repo = "home-manager";
       ref = "master";
-      inputs = {
-        nixpkgs.follows = "nixpkgs-stable";
-      };
+      inputs = { nixpkgs.follows = "nixpkgs-stable"; };
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, ... }:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... }:
     let
       system = "x86_64-linux";
-      unstableOverlay = final: prev: {
-        unstable = nixpkgs.legacyPackages.${prev.system};
-      };
+      localOverlays = import ./overlays;
+      #unstableOverlay = final: prev: {
+      #  unstable = nixpkgs.legacyPackages.${prev.system};
+      #};
     in {
       nixosConfigurations.nixos = nixpkgs-stable.lib.nixosSystem {
         inherit system;
         modules = [
-          ({ config, pkgs, ... }: {
-            nixpkgs.overlays = [ unstableOverlay ];
-          })
+          ({ config, pkgs, ... }: { nixpkgs.overlays = [ localOverlays ]; })
           ./configuration.nix
         ];
       };
+      #homeConfigurations.serg = home-manager.lib.homeManagerConfiguration {
+      #  pkgs = nixpkgs.legacyPackages.${system};
+      #};
     };
 }
