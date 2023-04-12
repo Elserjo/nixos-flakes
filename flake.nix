@@ -23,9 +23,17 @@
       ref = "master";
       inputs = { nixpkgs.follows = "nixpkgs-stable"; };
     };
+
+    arkenfox = {
+      type = "github";
+      owner = "dwarfmaster";
+      repo = "arkenfox-nixos";
+      ref = "main";
+      inputs = { nixpkgs.follows = "nixpkgs-stable";};
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... }:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, arkenfox }:
     let
       system = "x86_64-linux";
       unstableOverlay = final: prev: {
@@ -38,7 +46,7 @@
       };
       homeConfigurations.serg = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs-stable.legacyPackages.${system};
-        modules = [ ./home-manager ];
+        modules = [ ./home-manager/home.nix ];
       };
     };
 }
