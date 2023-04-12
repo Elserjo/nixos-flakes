@@ -28,20 +28,17 @@
   outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... }:
     let
       system = "x86_64-linux";
-      localOverlays = import ./overlays;
-      #unstableOverlay = final: prev: {
-      #  unstable = nixpkgs.legacyPackages.${prev.system};
-      #};
+      unstableOverlay = final: prev: {
+        unstable = nixpkgs.legacyPackages.${prev.system};
+      };
     in {
       nixosConfigurations.nixos = nixpkgs-stable.lib.nixosSystem {
-        inherit system;
-        modules = [
-          ({ config, pkgs, ... }: { nixpkgs.overlays = [ localOverlays ]; })
-          ./configuration.nix
-        ];
+        modules =
+          [ { nixpkgs.overlays = [ unstableOverlay ]; } ./configuration.nix ];
       };
-      #homeConfigurations.serg = home-manager.lib.homeManagerConfiguration {
-      #  pkgs = nixpkgs.legacyPackages.${system};
-      #};
+      homeConfigurations.serg = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs-stable.legacyPackages.${system};
+        modules = [ ./home-manager ];
+      };
     };
 }
