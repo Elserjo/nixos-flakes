@@ -63,7 +63,6 @@
     extraGroups = [ "wheel" "audio" "video" ]; # Enable ‘sudo’ for the user.
 
     packages = with pkgs; [
-      firefox
       tor-browser-bundle-bin
       rpcs3
       pcsx2
