@@ -53,10 +53,6 @@
     keyMap = "ruwin_alt_sh-UTF-8";
   };
 
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.serg = {
     isNormalUser = true;
