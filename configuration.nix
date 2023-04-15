@@ -12,7 +12,7 @@
     ./services/sound.nix
     ./services/syncthing.nix
     ./unfree.nix
-    ./virtualbox.nix
+    #./virtualbox.nix
     ./steam.nix
   ];
 
