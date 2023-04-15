@@ -7,6 +7,6 @@
 
   users.extraGroups.vboxusers.members = [ "serg" ];
 
-  modules.unfree.nix.common.allowedUnfreePackages =
+  modules.unfree.nix.allowedUnfreePackages =
     [ "Oracle_VM_VirtualBox_Extension_Pack" ];
 }

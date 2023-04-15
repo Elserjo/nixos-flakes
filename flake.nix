@@ -40,7 +40,7 @@
         unstable = nixpkgs.legacyPackages.${prev.system};
       };
     in {
-      nixosModules.default = import ./modules/common;
+      nixosModules.common = import ./modules/common;
       nixosConfigurations.nixos = nixpkgs-stable.lib.nixosSystem {
         inherit system;
         modules =

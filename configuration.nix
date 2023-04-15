@@ -11,9 +11,10 @@
     ./desktop/gnome.nix
     ./services/sound.nix
     ./services/syncthing.nix
-    ./unfree.nix
+    ./programms
+    #./unfree.nix
     #./virtualbox.nix
-    ./steam.nix
+    #./steam.nix
   ];
 
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
