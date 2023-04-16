@@ -43,8 +43,11 @@
       nixosModules.common = import ./modules/common;
       nixosConfigurations.nixos = nixpkgs-stable.lib.nixosSystem {
         inherit system;
-        modules =
-          [ ({ nixpkgs.overlays = [ unstableOverlay ]; }) ./configuration.nix ];
+        modules = with self.nixosModules; [
+          ({ nixpkgs.overlays = [ unstableOverlay ]; })
+          common
+          ./configuration.nix
+        ];
       };
       homeConfigurations.serg = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs-stable.legacyPackages.${system};
