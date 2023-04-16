@@ -12,9 +12,6 @@
     ./services/sound.nix
     ./services/syncthing.nix
     ./programms
-    #./unfree.nix
-    #./virtualbox.nix
-    #./steam.nix
   ];
 
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
@@ -60,17 +57,6 @@
     extraGroups = [ "wheel" "audio" "video" ]; # Enable ‘sudo’ for the user.
 
     packages = with pkgs; [
-      rpcs3
-      pcsx2
-      gimp
-      qbittorrent
-      geeqie
-      mkvtoolnix
-      flacon
-      mediainfo-gui
-      picard
-      keepassxc
-      quodlibet-full
       emacs-gtk
       unstable.tdesktop
       unstable.nicotine-plus
