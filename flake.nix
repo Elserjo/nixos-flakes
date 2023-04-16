@@ -39,8 +39,9 @@
       unstableOverlay = final: prev: {
         unstable = nixpkgs.legacyPackages.${prev.system};
       };
-    in {
       nixosModules.common = import ./modules/common;
+    in with nixosModules; {
+      #formatter.${system} = nixpkgs-stable.legacyPackages.${system}.nixfmt;
       nixosConfigurations.nixos = nixpkgs-stable.lib.nixosSystem {
         inherit system;
         modules = with self.nixosModules; [
@@ -51,7 +52,8 @@
       };
       homeConfigurations.serg = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs-stable.legacyPackages.${system};
-        modules = [ ./home-manager/home.nix arkenfox-nixos.hmModules.arkenfox ];
+        modules =
+          [ common ./home-manager/home.nix arkenfox-nixos.hmModules.arkenfox ];
       };
     };
 }
