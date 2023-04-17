@@ -44,7 +44,7 @@
       #formatter.${system} = nixpkgs-stable.legacyPackages.${system}.nixfmt;
       nixosConfigurations.nixos = nixpkgs-stable.lib.nixosSystem {
         inherit system;
-        modules = with self.nixosModules; [
+        modules = [
           ({ nixpkgs.overlays = [ unstableOverlay ]; })
           common
           ./configuration.nix
