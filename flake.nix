@@ -36,16 +36,16 @@
   outputs = { self, nixpkgs, nixpkgs-stable, home-manager, arkenfox-nixos }:
     let
       system = "x86_64-linux";
-      unstableOverlay = final: prev: {
-        unstable = nixpkgs.legacyPackages.${prev.system};
-      };
+      #unstableOverlay = final: prev: {
+      #  unstable = nixpkgs.legacyPackages.${prev.system};
+      #};
       nixosModules.common = import ./modules/common;
+      overlays = import ./overlays/unstable.nix;
     in with nixosModules; {
       #formatter.${system} = nixpkgs-stable.legacyPackages.${system}.nixfmt;
       nixosConfigurations.nixos = nixpkgs-stable.lib.nixosSystem {
         inherit system;
         modules = [
-          ({ nixpkgs.overlays = [ unstableOverlay ]; })
           common
           ./configuration.nix
         ];
