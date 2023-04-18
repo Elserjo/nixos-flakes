@@ -58,8 +58,6 @@
 
     packages = with pkgs; [
       emacs-gtk
-      unstable.tdesktop
-      unstable.nicotine-plus
       git
       nixfmt # Nix code formatter
     ];

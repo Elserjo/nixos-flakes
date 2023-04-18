@@ -52,8 +52,12 @@
       };
       homeConfigurations.serg = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs-stable.legacyPackages.${system};
-        modules =
-          [ common ./home-manager/home.nix arkenfox-nixos.hmModules.arkenfox ];
+        modules = [
+          ({ nixpkgs.overlays = [ unstableOverlay ]; })
+          common
+          ./home-manager/home.nix
+          arkenfox-nixos.hmModules.arkenfox
+        ];
       };
     };
 }
