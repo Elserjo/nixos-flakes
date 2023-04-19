@@ -33,14 +33,12 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, arkenfox-nixos }:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, arkenfox-nixos, ... }@inputs:
     let
+      inherit (self) outputs;
       system = "x86_64-linux";
-      #unstableOverlay = final: prev: {
-      #  unstable = nixpkgs.legacyPackages.${prev.system};
-      #};
       nixosModules.common = import ./modules/common;
-      overlays = import ./overlays;
+      overlays = import ./overlays { inherit inputs; };
     in with nixosModules; {
       #formatter.${system} = nixpkgs-stable.legacyPackages.${system}.nixfmt;
       nixosConfigurations.nixos = nixpkgs-stable.lib.nixosSystem {
@@ -52,8 +50,8 @@
       };
       homeConfigurations.serg = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs-stable.legacyPackages.${system};
+        extraSpecialArgs = { inherit outputs; };
         modules = [
-          ({ nixpkgs.overlays = [ unstableOverlay ]; })
           common
           ./home-manager/home.nix
           arkenfox-nixos.hmModules.arkenfox
