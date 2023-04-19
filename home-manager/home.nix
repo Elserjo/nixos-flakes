@@ -34,6 +34,7 @@
     quodlibet-full
     unstable.telegram-desktop
     unstable.nicotine-plus
+  ];
 
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in

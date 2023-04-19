@@ -40,7 +40,7 @@
       #  unstable = nixpkgs.legacyPackages.${prev.system};
       #};
       nixosModules.common = import ./modules/common;
-      overlays = import ./overlays/unstable.nix;
+      overlays = import ./overlays;
     in with nixosModules; {
       #formatter.${system} = nixpkgs-stable.legacyPackages.${system}.nixfmt;
       nixosConfigurations.nixos = nixpkgs-stable.lib.nixosSystem {
