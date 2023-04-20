@@ -11,7 +11,7 @@
     ./desktop/gnome.nix
     ./services/sound.nix
     ./services/syncthing.nix
-    ./programms
+    ./programs
   ];
 
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
