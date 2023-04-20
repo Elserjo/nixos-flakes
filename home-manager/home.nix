@@ -1,4 +1,4 @@
-{ outputs, config, pkgs, ... }:
+{ outputs, config, lib, pkgs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -16,9 +16,7 @@
   # release notes.
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
-  nixpkgs = {
-    overlays = [ outputs.overlays.unstableOverlay ];
-  };
+  nixpkgs = { overlays = [ outputs.overlays.unstable-packages ]; };
 
   home.packages = with pkgs; [
     radeontop

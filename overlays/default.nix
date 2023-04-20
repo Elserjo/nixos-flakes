@@ -1,7 +1,7 @@
-{ nixpkgs, nixpkgs-stable, ... }:
+{ inputs, ... }:
 
 {
-  unstableOverlay = final: prev: {
-    unstable = nixpkgs.legacyPackages.${prev.system};
+  unstable-packages = final: _prev: {
+    unstable = import inputs.nixpkgs { system = final.system; };
   };
 }

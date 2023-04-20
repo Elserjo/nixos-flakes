@@ -38,9 +38,9 @@
       inherit (self) outputs;
       system = "x86_64-linux";
       nixosModules.common = import ./modules/common;
-      overlays = import ./overlays { inherit inputs; };
     in with nixosModules; {
       #formatter.${system} = nixpkgs-stable.legacyPackages.${system}.nixfmt;
+      overlays = import ./overlays { inherit inputs; };
       nixosConfigurations.nixos = nixpkgs-stable.lib.nixosSystem {
         inherit system;
         modules = [
@@ -48,9 +48,10 @@
           ./configuration.nix
         ];
       };
+
       homeConfigurations.serg = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs-stable.legacyPackages.${system};
-        extraSpecialArgs = { inherit outputs; };
+        extraSpecialArgs = { inherit inputs outputs; };
         modules = [
           common
           ./home-manager/home.nix
