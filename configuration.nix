@@ -58,7 +58,6 @@
 
     packages = with pkgs; [
       emacs-gtk
-      git
       nixfmt # Nix code formatter
     ];
   };
