@@ -12,6 +12,7 @@
     ./services/sound.nix
     ./services/syncthing.nix
     ./programs
+    ./scripts
   ];
 
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";

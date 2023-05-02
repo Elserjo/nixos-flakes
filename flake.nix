@@ -41,6 +41,7 @@
     in with nixosModules; {
       #formatter.${system} = nixpkgs-stable.legacyPackages.${system}.nixfmt;
       overlays = import ./overlays { inherit inputs; };
+
       nixosConfigurations.nixos = nixpkgs-stable.lib.nixosSystem {
         inherit system;
         modules = [
