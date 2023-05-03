@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+_BACKUP_DIR="/home/serg/Backup/Garmin Edge 830"
+
 on_error() 
 {
      _MSG_=$1
@@ -11,7 +13,7 @@ do_test()
 {
     _BIN_=$1
  
-    if [ ! -x "$(command -v $_BIN_)" ]; then
+    if [ ! -x "$(command -v "$_BIN_")" ]; then
         echo "$_BIN_ is not installed"
         exit 1
     fi
@@ -45,15 +47,11 @@ writeLog()
 
 garmin()
 {
-    export DISPLAY=:0 
-    export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
-    
     MPOINT_GARMIN="$(df -h | grep -i "Garmin" | awk '{print $NF}')"
     
     check_mount "$MPOINT_GARMIN" "Garmin"
     
     _SRC_DIR="$MPOINT_GARMIN/Garmin/"
-    _BACKUP_DIR="/home/serg/Backup/Garmin Edge 830"
     copyArray=(
             "Activities" 
             "Locations" 
@@ -74,7 +72,7 @@ garmin()
     
     LOG_NAME="_garmin"
       
-    rsync --no-perms --checksum --progress -v -r $_COPY_STR --exclude=* $_SRC_DIR "$_BACKUP_DIR" 
+    rsync --no-perms --checksum --progress -v -r "$_COPY_STR" --exclude=* "$_SRC_DIR" "$_BACKUP_DIR" 
     
     RET_CODE=$?
     
@@ -82,7 +80,6 @@ garmin()
         writeLog "$LOG_NAME" "$_BACKUP_DIR"
         notify-send "Garmin 830 Backup is Done"
     fi     
-    #echo "$_COPY_STR"
 }
 
 garmin
