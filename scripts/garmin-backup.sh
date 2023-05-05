@@ -1,22 +1,12 @@
 #!/usr/bin/env bash
 
-_BACKUP_DIR="/home/serg/Backup/Garmin Edge 830"
+backupDir="/home/serg/Backup/Garmin Edge 830/"
 
 on_error() 
 {
      _MSG_=$1
      echo "$_MSG_"
      exit 1
-}
-
-do_test()
-{
-    _BIN_=$1
- 
-    if [ ! -x "$(command -v "$_BIN_")" ]; then
-        echo "$_BIN_ is not installed"
-        exit 1
-    fi
 }
 
 check_mount()
@@ -47,11 +37,11 @@ writeLog()
 
 garmin()
 {
-    MPOINT_GARMIN="$(df -h | grep -i "Garmin" | awk '{print $NF}')"
+    mpointGarmin="$(df -h | grep -i "Garmin" | awk '{print $NF}')"
     
-    check_mount "$MPOINT_GARMIN" "Garmin"
+    check_mount "${mpointGarmin}" "Garmin"
     
-    _SRC_DIR="$MPOINT_GARMIN/Garmin/"
+    inputDir="${mpointGarmin}/Garmin/"
     copyArray=(
             "Activities" 
             "Locations" 
@@ -64,20 +54,22 @@ garmin()
     
     #https://stackoverflow.com/questions/9952000/using-rsync-include-and-exclude-options-to-include-directory-and-file-by-pattern
     #https://github.com/JonnyTischbein/rsync-server/blob/master/sync-folder.sh
+    #Glob should be used inside array (according shellcheck)
+    #See https://www.shellcheck.net/wiki/SC2125
     
     for val in "${copyArray[@]}"
         do
-	    _COPY_STR+="--include=$val/*** "
+            copyStr+=( --include="$val"/*** )
         done
     
-    LOG_NAME="_garmin"
-      
-    rsync --no-perms --checksum --progress -v -r "$_COPY_STR" --exclude=* "$_SRC_DIR" "$_BACKUP_DIR" 
+    #LOG_NAME="_garmin"
+    rsync --dry-run --no-perms --checksum --progress -v -r "${copyStr[@]}" \
+          --exclude=* "${inputDir}" "${backupDir}" 
     
     RET_CODE=$?
     
     if test $RET_CODE -eq 0; then
-        writeLog "$LOG_NAME" "$_BACKUP_DIR"
+        writeLog "$LOG_NAME" "${backupDir}"
         notify-send "Garmin 830 Backup is Done"
     fi     
 }
