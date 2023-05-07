@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 backupDir="/home/serg/Backup/Garmin Edge 830/"
+#I need to export this variables for notify-send
+export DISPLAY=:0
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 
 on_error() 
 {
@@ -26,8 +29,6 @@ writeLog()
     _SAVE_PATH_=$2
 
     local outputPath="$_SAVE_PATH_/backup_history_${_LOG_}".log
-    #echo $outputPath
-    #exit 1
 
     if [ ! -e "$outputPath" ]; then
         echo "Backup_log: " > "$outputPath"
@@ -37,8 +38,8 @@ writeLog()
 
 garmin()
 {
-    mpointGarmin="$(df -h | grep -i "Garmin" | awk '{print $NF}')"
-    
+    mpointGarmin="$(findmnt -nr -o TARGET -S UUID="961E-AA0E")"
+
     check_mount "${mpointGarmin}" "Garmin"
     
     inputDir="${mpointGarmin}/Garmin/"
@@ -62,9 +63,9 @@ garmin()
             copyStr+=( --include="$val"/*** )
         done
     
-    #LOG_NAME="_garmin"
-    rsync --dry-run --no-perms --checksum --progress -v -r "${copyStr[@]}" \
-          --exclude=* "${inputDir}" "${backupDir}" 
+    LOG_NAME="garmin"
+    rsync --no-perms --checksum --progress -v -r "${copyStr[@]}" \
+         --exclude=* "${inputDir}" "${backupDir}"
     
     RET_CODE=$?
     
