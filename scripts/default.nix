@@ -3,6 +3,7 @@
 #https://github.com/NixOS/nixpkgs/blob/dade7540afee3578f7a4b98a39af42052cbc4a85/pkgs/build-support/trivial-builders.nix#L228-L253
 
 let
+  garminService = "garmin";
   garmin-backup = pkgs.writeShellApplication {
     name = "garmin-backup";
     text = builtins.readFile ./garmin-backup.sh;
@@ -10,7 +11,7 @@ let
   };
 
 in {
-  systemd.user.services.garmin = {
+  systemd.user.services.${garminService} = {
     enable = true;
     requires = [ "run-media-serg-GARMIN.mount" ];
     after = [ "run-media-serg-GARMIN.mount" ];
@@ -23,7 +24,7 @@ in {
   services.udev.extraRules = ''
         ACTION=="change", SUBSYSTEM=="block",
         ENV{ID_VENDOR_ID}=="091e", ENV{ID_MODEL_ID}=="2c32", ENV{ID_SERIAL}=="Garmin_GARMIN_Flash-0:0",
-    ENV{SYSTEMD_WANTS}=="garmin.service"
+    ENV{SYSTEMD_WANTS}=="${garminService}.service"
   '';
 }
 
