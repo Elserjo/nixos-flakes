@@ -11,7 +11,8 @@ let
   };
 
 in {
-  systemd.user.services.${garminService} = {
+  systemd.user.services."${garminService}" = {
+    description = "Backup garmin activities when Garmin 830 is connected";
     enable = true;
     requires = [ "run-media-serg-GARMIN.mount" ];
     after = [ "run-media-serg-GARMIN.mount" ];
@@ -27,4 +28,3 @@ in {
     ENV{SYSTEMD_WANTS}=="${garminService}.service"
   '';
 }
-
