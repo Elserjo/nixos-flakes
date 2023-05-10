@@ -11,12 +11,14 @@ let
   };
 
 in {
+  systemd.user.paths."${garminService}" = {
+    description = "Backup garmin systemd path service";
+    pathConfig = {
+      PathExistsGlob = "^\/run[a-zA-Z0-9\/]+(?i)(garmin)$";
+    };
+  };
   systemd.user.services."${garminService}" = {
     description = "Backup garmin activities when Garmin 830 is connected";
-    enable = true;
-    requires = [ "run-media-serg-GARMIN.mount" ];
-    after = [ "run-media-serg-GARMIN.mount" ];
-    wantedBy = [ "run-media-serg-GARMIN.mount" ];
     serviceConfig = {
       ExecStart = "${garmin-backup}/bin/garmin-backup";
       Type = "forking";
@@ -25,6 +27,6 @@ in {
   services.udev.extraRules = ''
         ACTION=="change", SUBSYSTEM=="block",
         ENV{ID_VENDOR_ID}=="091e", ENV{ID_MODEL_ID}=="2c32", ENV{ID_SERIAL}=="Garmin_GARMIN_Flash-0:0",
-    ENV{SYSTEMD_WANTS}=="${garminService}.service"
+    ENV{SYSTEMD_WANTS}=="${garminService}.path"
   '';
 }
