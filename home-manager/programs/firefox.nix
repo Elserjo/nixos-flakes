@@ -2,7 +2,7 @@
 { pkgs, ... }: {
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox;
+    package = pkgs.firefox-bin;
     arkenfox = { enable = true; };
     profiles.default-arkenfox = {
       arkenfox = {
