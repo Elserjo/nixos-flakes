@@ -97,10 +97,7 @@
   hardware.bluetooth.enable = true;
 
   # List services that you want to enable:
-  security.polkit.enable = true;
-  services.dbus.enable = true;
   services.fstrim.enable = true;
-  services.gvfs.enable = true;
 
   # Enable weekly garbage collect
   nix.gc = {
