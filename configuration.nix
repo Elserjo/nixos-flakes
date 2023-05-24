@@ -85,8 +85,7 @@
   ];
 
   #By default NixOS cpu governor is powersave
-  powerManagement.cpuFreqGovernor = "performance";
-
+  #powerManagement.cpuFreqGovernor = "performance";
   programs.vim.defaultEditor = true;
 
   services.journald.extraConfig = ''
