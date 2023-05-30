@@ -20,7 +20,7 @@
       type = "github";
       owner = "nix-community";
       repo = "home-manager";
-      ref = "master";
+      ref = "release-22.11";
       inputs = { nixpkgs.follows = "nixpkgs-stable"; };
     };
 
@@ -39,15 +39,17 @@
       inherit (self) outputs;
       system = "x86_64-linux";
       commonModules = [ ./modules/common ] ++ [
-        home-manager.nixosModules.home-manager {
+        home-manager.nixosModules.home-manager
+        {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit inputs outputs; };
+          home-manager.users.serg = import ./home-manager/home.nix;
         }
         arkenfox-nixos.hmModules.arkenfox
       ];
     in {
-      overlays = import ./overlays { inherit inputs; };
-
+      #overlays = import ./overlays { inherit inputs; };
       nixosConfigurations.nixos = nixpkgs-stable.lib.nixosSystem {
         inherit system;
         modules = [ ./configuration.nix ] ++ commonModules;

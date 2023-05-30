@@ -9,9 +9,10 @@
   imports = [ ./programs ];
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
-  nixpkgs = { overlays = [ outputs.overlays.unstable-packages ]; };
+  #nixpkgs = { overlays = [ outputs.overlays.unstable-packages ]; };
 
   home.packages = with pkgs; [
+    hello
     radeontop
     tor-browser-bundle-bin
     rpcs3
@@ -25,8 +26,8 @@
     picard
     keepassxc
     quodlibet-full
-    unstable.telegram-desktop
-    unstable.nicotine-plus
+    #telegram-desktop
+    #unstable.nicotine-plus
   ];
 
   home.file = {
