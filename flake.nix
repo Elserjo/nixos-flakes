@@ -33,31 +33,31 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, arkenfox-nixos, ... }@inputs:
+  outputs =
+    { self, nixpkgs, nixpkgs-stable, home-manager, arkenfox-nixos, ... }@inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";
-      nixosModules.common = import ./modules/common;
-    in with nixosModules; {
-      #formatter.${system} = nixpkgs-stable.legacyPackages.${system}.nixfmt;
+      commonModules = [ ./modules/common ] ++ [
+        home-manager.nixosModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+        }
+        arkenfox-nixos.hmModules.arkenfox
+      ];
+    in {
       overlays = import ./overlays { inherit inputs; };
 
       nixosConfigurations.nixos = nixpkgs-stable.lib.nixosSystem {
         inherit system;
-        modules = [
-          common
-          ./configuration.nix
-        ];
+        modules = [ ./configuration.nix ] ++ commonModules;
       };
 
-      homeConfigurations.serg = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs-stable.legacyPackages.${system};
-        extraSpecialArgs = { inherit inputs outputs; };
-        modules = [
-          common
-          ./home-manager/home.nix
-          arkenfox-nixos.hmModules.arkenfox
-        ];
-      };
+      #homeConfigurations.serg = home-manager.lib.homeManagerConfiguration {
+      #  pkgs = nixpkgs-stable.legacyPackages.${system};
+      #  extraSpecialArgs = { inherit inputs outputs; };
+      #  modules =
+      #    [ common ./home-manager/home.nix arkenfox-nixos.hmModules.arkenfox ];
+      #};
     };
 }
