@@ -1,8 +1,10 @@
 # https://git.azahi.cc/nixfiles/tree/modules/nixos/firefox/default.nix
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
+  # Import arkenfox NixOS module from inputs
+  imports = [ inputs.arkenfox-nixos.hmModules.arkenfox ];
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox-bin;
+    package = pkgs.firefox;
     arkenfox = { enable = true; };
     profiles.default-arkenfox = {
       arkenfox = {

@@ -46,20 +46,12 @@
           home-manager.extraSpecialArgs = { inherit inputs outputs; };
           home-manager.users.serg = import ./home-manager/home.nix;
         }
-        arkenfox-nixos.hmModules.arkenfox
       ];
     in {
-      #overlays = import ./overlays { inherit inputs; };
+      overlays = import ./overlays { inherit inputs; };
       nixosConfigurations.nixos = nixpkgs-stable.lib.nixosSystem {
         inherit system;
         modules = [ ./configuration.nix ] ++ commonModules;
       };
-
-      #homeConfigurations.serg = home-manager.lib.homeManagerConfiguration {
-      #  pkgs = nixpkgs-stable.legacyPackages.${system};
-      #  extraSpecialArgs = { inherit inputs outputs; };
-      #  modules =
-      #    [ common ./home-manager/home.nix arkenfox-nixos.hmModules.arkenfox ];
-      #};
     };
 }

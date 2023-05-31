@@ -9,7 +9,10 @@
   imports = [ ./programs ];
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
-  #nixpkgs = { overlays = [ outputs.overlays.unstable-packages ]; };
+  nixpkgs = { overlays = [ outputs.overlays.unstable-packages ]; };
+
+  modules.unfree.nix.allowedUnfreePackages =
+    [ "Oracle_VM_VirtualBox_Extension_Pack" ];
 
   home.packages = with pkgs; [
     hello
@@ -26,8 +29,8 @@
     picard
     keepassxc
     quodlibet-full
-    #telegram-desktop
-    #unstable.nicotine-plus
+    tdesktop
+    unstable.nicotine-plus
   ];
 
   home.file = {
