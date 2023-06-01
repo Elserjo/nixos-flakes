@@ -51,7 +51,7 @@
         }
       ];
     in {
-      #overlays = import ./overlays { inherit inputs; };
+      overlays = import ./overlays { inherit inputs; };
       nixosConfigurations.nixos = nixpkgs-stable.lib.nixosSystem {
         inherit system;
         modules = [ ./configuration.nix ] ++ commonModules;

@@ -9,7 +9,7 @@
   imports = [ ./programs ];
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
-  #nixpkgs = { overlays = [ outputs.overlays.unstable-packages ]; };
+  nixpkgs = { overlays = [ outputs.overlays.unstable-packages ]; };
 
   home.packages = with pkgs; [
     radeontop
@@ -26,7 +26,8 @@
     keepassxc
     quodlibet-full
     tdesktop
-    #unstable.nicotine-plus
+    #If i need unstable: "unstable.nicotine"
+    nicotine-plus
   ];
 
   home.file = {
