@@ -11,10 +11,7 @@
 
   #nixpkgs = { overlays = [ outputs.overlays.unstable-packages ]; };
 
-  modules.unfree.nix.allowedUnfreePackages = [ "discord" ];
-
   home.packages = with pkgs; [
-    discord
     radeontop
     tor-browser-bundle-bin
     rpcs3

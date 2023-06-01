@@ -41,10 +41,12 @@
       commonModules = [ ./modules/common ] ++ [
         home-manager.nixosModules.home-manager
         {
-          home-manager.useGlobalPkgs = true;
+          #Need for overlays and allow unfree packages
+          #inside homemanager module
+          home-manager.useGlobalPkgs = false;
           home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = { inherit inputs; };
-          #home-manager.sharedModules = [ ./modules/common ];
+          home-manager.extraSpecialArgs = { inherit inputs outputs; };
+          home-manager.sharedModules = [ ./modules/common ];
           home-manager.users.serg = import ./home-manager/home.nix;
         }
       ];
