@@ -9,13 +9,12 @@
   imports = [ ./programs ];
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
-  nixpkgs = { overlays = [ outputs.overlays.unstable-packages ]; };
+  #nixpkgs = { overlays = [ outputs.overlays.unstable-packages ]; };
 
-  modules.unfree.nix.allowedUnfreePackages =
-    [ "Oracle_VM_VirtualBox_Extension_Pack" ];
+  modules.unfree.nix.allowedUnfreePackages = [ "discord" ];
 
   home.packages = with pkgs; [
-    hello
+    discord
     radeontop
     tor-browser-bundle-bin
     rpcs3
@@ -30,7 +29,7 @@
     keepassxc
     quodlibet-full
     tdesktop
-    unstable.nicotine-plus
+    #unstable.nicotine-plus
   ];
 
   home.file = {
