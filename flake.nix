@@ -47,7 +47,7 @@
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = { inherit inputs outputs; };
           home-manager.sharedModules = [ ./modules/common ];
-          home-manager.users.serg = import ./home-manager/home.nix;
+          home-manager.users.serg = import ./home-manager;
         }
       ];
     in {
