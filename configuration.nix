@@ -58,7 +58,6 @@
     extraGroups = [ "wheel" "audio" "video" ]; # Enable ‘sudo’ for the user.
 
     packages = with pkgs; [
-      emacs-gtk
       nixfmt # Nix code formatter
     ];
   };
