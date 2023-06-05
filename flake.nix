@@ -41,7 +41,7 @@
       commonModules = [ ./modules/common ] ++ [
         home-manager.nixosModules.home-manager
         {
-          #Need for overlays and allow unfree packages
+          #Need for overlays and for allow unfree packages
           #inside homemanager module
           home-manager.useGlobalPkgs = false;
           home-manager.useUserPackages = true;
