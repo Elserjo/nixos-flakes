@@ -1,21 +1,21 @@
 { cfg, pkgs, ... }:
 
 let
-  directorySymlink = pkgs.writeShellApplication {
+  directoryHardlink = pkgs.writeShellApplication {
     name = "hardlink-create";
-    text = builtins.readFile ./hardlinks.sh;
+    text = builtins.readFile ./hardlink-create.sh;
     runtimeInputs = [ pkgs.coreutils pkgs.util-linux pkgs.flac ];
   };
 
 in {
   home-manager.users.serg = {
     xdg.desktopEntries = {
-      directorySymlink = {
+      directoryHardlink = {
         type = "Application";
-        name = "directory-symlink";
+        name = "directory-hardlink";
         noDisplay = true;
         terminal = true;
-        exec = "${directorySymlink}/bin/hardlink-create %F";
+        exec = "${directoryHardlink}/bin/hardlink-create %F";
         mimeType = [ "audio/flac" ];
       };
     };
