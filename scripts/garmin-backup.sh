@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-backupDir="/home/serg/Backup/Garmin Edge 830/"
+backupDir="${HOME}/Backup/Garmin Edge 830/"
 #I need to export this variables for notify-send
 export DISPLAY=:0
 export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
@@ -64,12 +64,9 @@ garmin()
         done
 
     LOG_NAME="garmin"
-    rsync --no-perms --checksum --progress -v -r "${copyStr[@]}" \
-         --exclude=* "${inputDir}" "${backupDir}"
 
-    RET_CODE=$?
-
-    if test $RET_CODE -eq 0; then
+    if rsync --no-perms --checksum --progress -v -r "${copyStr[@]}" \
+             --exclude=* "${inputDir}" "${backupDir}"; then
         writeLog "$LOG_NAME" "${backupDir}"
         notify-send "Garmin 830 Backup is Done"
     fi
