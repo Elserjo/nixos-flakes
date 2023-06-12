@@ -12,7 +12,7 @@ in {
     xdg.desktopEntries = {
       musicLib = {
         type = "Application";
-        name = "music-lib";
+        name = "add-to-music-lib";
         noDisplay = true;
         terminal = true;
         exec = "${musicLib}/bin/music-lib %F";
