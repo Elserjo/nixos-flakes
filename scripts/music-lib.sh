@@ -13,6 +13,7 @@ function onError() {
 function setFiles() {
     local currentDir="${1}"
 
+    #TODO sort find result
     while IFS= read -r -d '' result; do
         files+=( "${result}" )
     done < <(find "${currentDir}" \

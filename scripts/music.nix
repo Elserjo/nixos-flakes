@@ -1,21 +1,21 @@
 { cfg, pkgs, ... }:
 
 let
-  directoryHardlink = pkgs.writeShellApplication {
+  musicLib = pkgs.writeShellApplication {
     name = "hardlink-create";
-    text = builtins.readFile ./hardlink-create.sh;
+    text = builtins.readFile ./music-lib.sh;
     runtimeInputs = [ pkgs.coreutils pkgs.util-linux pkgs.flac ];
   };
 
 in {
   home-manager.users.serg = {
     xdg.desktopEntries = {
-      directoryHardlink = {
+      musicLib = {
         type = "Application";
-        name = "directory-hardlink";
+        name = "music-lib";
         noDisplay = true;
         terminal = true;
-        exec = "${directoryHardlink}/bin/hardlink-create %F";
+        exec = "${musicLib}/bin/music-lib %F";
         mimeType = [ "audio/flac" ];
       };
     };
