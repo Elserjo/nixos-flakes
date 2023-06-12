@@ -1,5 +1,5 @@
 {
   imports = [ ./garmin.nix
-              ./hardlinks-sync.nix
+              ./music.nix
             ];
 }

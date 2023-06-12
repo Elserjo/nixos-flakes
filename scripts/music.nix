@@ -2,7 +2,7 @@
 
 let
   musicLib = pkgs.writeShellApplication {
-    name = "hardlink-create";
+    name = "music-lib";
     text = builtins.readFile ./music-lib.sh;
     runtimeInputs = [ pkgs.coreutils pkgs.util-linux pkgs.flac ];
   };
