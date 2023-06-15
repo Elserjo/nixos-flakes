@@ -4,22 +4,12 @@ outputDir="${HOME}/Media/DAP/MusicLib"
 
 #Set list of all flac files in all directories
 function onError() {
-    local message="$1"
+    local message="${1}"
     echo "${message}"
     read -s -r
     exit 1
 }
 
-function setFiles() {
-    local currentDir="${1}"
-
-    #TODO sort find result
-    while IFS= read -r -d '' result; do
-        files+=( "${result}" )
-    done < <(find "${currentDir}" \
-        -maxdepth 1 -mindepth 1 -type f \
-        -name "*.flac" -print0)
-}
 #Get artist and album name from tag
 function getTags() {
     local pattern=":?<>*\\/|\"" #pattern for replacing symbols
@@ -37,27 +27,67 @@ function getTags() {
     albumName="${albumName:0:50}"
     artistName="${artistName:0:50}"
 
-    [[ -n ${artistName} ]] || onError "Tag {ARTIST} is empty"
-    [[ -n ${albumName} ]] || onError "Tag {ALBUM} is empty"
+    [[ -n ${artistName} ]] || \
+        onError "Tag {ARTIST} is empty in [${fileName}]"
+    [[ -n ${albumName} ]] || \
+        onError "Tag {ALBUM} is empty in [${fileName}]"
+}
+
+function checkUnique() {
+    local verifyFile="${1}" #It just first element of array
+    getTags "${verifyFile}"
+
+    local currentArtist="${artistName}" #artistName and albumName are global variables
+    local currentAlbum="${albumName}"
+
+    for flacFile in "${files[@]}"; do
+        getTags "${flacFile}" #Get tags to verify with and also set them to variables
+        [[ ${currentArtist} = "${artistName}" ]] || \
+            onError "Artist tag is not same [${currentArtist}:${artistName}]"
+        [[ ${currentAlbum} = "${albumName}" ]] || \
+            onError "Album tag is not same [${currentAlbum}:${albumName}]"
+    done
 }
 #Checking that all dirs are exists
 for dir in "${@}"; do
     if [[ ! -d "${dir}" ]]; then
         onError "Directory is not exists \"${dir}\""
     fi
-    setFiles "${dir}"
 done
 
-for inputFile in "${files[@]}"; do
-    getTags "${inputFile}"
+for dir in "${@}"; do
+    #Remove backslash from current directory
+    currentDir="$(realpath "${dir}")"
 
+    #We assume, that one directory contains only one artist and album
+    
+    for inputFile in "${currentDir}"/*.flac; do
+        [[ -e "${inputFile}" ]] || onError "No flac files found"
+        files+=( "${inputFile}" )
+    done
+
+    checkUnique "${files[@]}" #This function also sets artistName and albumName variables
     hardlinkSavePath="${outputDir}/${artistName}/${albumName}"
     mkdir -p -v "${hardlinkSavePath}"
 
-    if ln -P -t "${hardlinkSavePath}" "${inputFile}"; then
-        echo "Copied [${hardlinkSavePath} $(basename "${inputFile}")]"
-    fi
+    for inputFile in "${files[@]}"; do
+        if ln -P -t "${hardlinkSavePath}" "${inputFile}"; then
+            echo "Copied [${hardlinkSavePath} $(basename "${inputFile}")]"
+        fi
+    done
+    
+    for cover in "${currentDir}"/*.jpg; do
+        coverName="$(basename "${cover}")"
+        #\d (digit) won't works in POSIX
+        if [[ "${coverName}" =~ ^[0-9]{3,4}x[0-9]{3,4}\.(jpe?g)$ ]]; then
+            if ln -P -t "${hardlinkSavePath}" "${cover}"; then
+                echo "Copied [${hardlinkSavePath} $(basename "${cover}")]"
+            fi
+            break;
+        fi
+    done
+    unset files #Clean array before new iteration
 done
 
-#Wait for user exit
+#Wait for user confirm
 read -s -r
