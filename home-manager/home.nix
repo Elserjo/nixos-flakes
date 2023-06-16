@@ -27,6 +27,7 @@
     quodlibet-full
     tdesktop
     emacs-gtk
+    freefilesync
     #If i need unstable: "unstable.nicotine"
     nicotine-plus
   ];
