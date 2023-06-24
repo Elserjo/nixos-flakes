@@ -62,7 +62,7 @@
     ];
   };
 
-  fonts.fonts = with pkgs; [ terminus_font noto-fonts ];
+  fonts.fonts = with pkgs; [ terminus_font noto-fonts noto-fonts-cjk-sans ];
 
   fonts.enableDefaultFonts = true;
   fonts.fontconfig = {
