@@ -16,7 +16,7 @@ in {
         noDisplay = true;
         terminal = true;
         exec = "${musicLib}/bin/music-lib %F";
-        mimeType = [ "audio/flac" ];
+        mimeType = [ "audio/flac" "audio/x-flac" ];
       };
     };
   };

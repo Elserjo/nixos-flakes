@@ -48,16 +48,22 @@ function checkUnique() {
             onError "Album tag is not same [${currentAlbum}:${albumName}]"
     done
 }
-#Checking that all dirs are exists
-for dir in "${@}"; do
-    if [[ ! -d "${dir}" ]]; then
-        onError "Directory is not exists \"${dir}\""
+#Checking that all dirs or files are exists
+for inputPath in "${@}"; do
+    if ! realpath -e "${inputPath}"; then
+        onError "Input is not exists \"${inputPath}\""
     fi
 done
 
-for dir in "${@}"; do
+for inputPath in "${@}"; do
     #Remove backslash from current directory
-    currentDir="$(realpath "${dir}")"
+    #Input path may be file or directory
+    
+    if [[ -f "${inputPath}" ]]; then
+        currentDir="$(dirname "${inputPath}")"
+    else
+        currentDir="$(realpath "${inputPath}")"
+    fi
 
     #We assume, that one directory contains only one artist and album
     
