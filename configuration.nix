@@ -61,8 +61,8 @@
       nixfmt # Nix code formatter
     ];
   };
-
   programs.adb.enable = true;
+
   fonts.fonts = with pkgs; [ terminus_font noto-fonts noto-fonts-cjk-sans ];
 
   fonts.enableDefaultFonts = true;

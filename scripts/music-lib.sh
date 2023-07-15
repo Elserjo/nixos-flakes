@@ -58,7 +58,7 @@ done
 for inputPath in "${@}"; do
     #Remove backslash from current directory
     #Input path may be file or directory
-    
+
     if [[ -f "${inputPath}" ]]; then
         currentDir="$(dirname "${inputPath}")"
     else
@@ -66,7 +66,7 @@ for inputPath in "${@}"; do
     fi
 
     #We assume, that one directory contains only one artist and album
-    
+
     for inputFile in "${currentDir}"/*.flac; do
         [[ -e "${inputFile}" ]] || onError "No flac files found"
         files+=( "${inputFile}" )
@@ -81,7 +81,7 @@ for inputPath in "${@}"; do
             echo "Copied [${hardlinkSavePath} $(basename "${inputFile}")]"
         fi
     done
-    
+
     for cover in "${currentDir}"/*.jpg; do
         coverName="$(basename "${cover}")"
         #\d (digit) won't works in POSIX
