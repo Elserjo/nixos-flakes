@@ -1,3 +1,3 @@
 {
-  imports = [ ./backuppc.nix ]
+  imports = [ ./backuppc.nix ];
 }
