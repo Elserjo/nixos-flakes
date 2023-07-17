@@ -13,7 +13,7 @@
       };
     };
     folders."syncthing" = {
-      path = "~/Media/syncthing";
+      path = "/data/Media/syncthing";
       devices = [ "synology" ];
       versioning = {
         type = "simple";
