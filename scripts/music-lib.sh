@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-outputDir="${HOME}/Media/DAP/MusicLib"
+outputDir="/data/Media/DAP/MusicLib"
 
 #Set list of all flac files in all directories
 function onError() {
