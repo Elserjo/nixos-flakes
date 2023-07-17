@@ -56,12 +56,17 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.serg = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "audio" "video" "adbusers"]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "audio" "video" "adbusers" "shared" ]; # Enable ‘sudo’ for the user.
 
     packages = with pkgs; [
       nixfmt # Nix code formatter
     ];
   };
+  #Additional group for shared folders
+  users.groups = {
+    shared = {};
+  };
+
   programs.adb.enable = true;
 
   fonts.fonts = with pkgs; [ terminus_font noto-fonts noto-fonts-cjk-sans ];
