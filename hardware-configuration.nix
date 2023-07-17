@@ -4,44 +4,43 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules =
+    [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" "nct6775" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/80971aac-983f-493a-96b9-351ee0602111";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/80971aac-983f-493a-96b9-351ee0602111";
+    fsType = "ext4";
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/BCE7-61C1";
-      fsType = "vfat";
-    };
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/81c6ea36-c820-455d-a9fb-fcaac4a41e24";
+    fsType = "ext4";
+  };
 
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/81c6ea36-c820-455d-a9fb-fcaac4a41e24";
-      fsType = "ext4";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/BCE7-61C1";
+    fsType = "vfat";
+  };
 
-  fileSystems."/home/serg/Media" =
-    { device = "/dev/disk/by-uuid/857897a3-f23f-4b99-83f4-ef84d12aa8fb";
-      fsType = "ext4";
-    };
+  fileSystems."/data/Backup" = {
+    device = "/dev/disk/by-uuid/e42823cd-1c64-43b3-bfda-b9e6cd4668c0";
+    fsType = "ext4";
+  };
 
-  fileSystems."/home/serg/Work" =
-    { device = "/dev/disk/by-uuid/20a32260-a248-44f2-ab27-9e453f0b0707";
-      fsType = "ext4";
-    };
+  fileSystems."/data/Work" = {
+    device = "/dev/disk/by-uuid/20a32260-a248-44f2-ab27-9e453f0b0707";
+    fsType = "ext4";
+  };
 
-  fileSystems."/home/serg/Backup" =
-    { device = "/dev/disk/by-uuid/e42823cd-1c64-43b3-bfda-b9e6cd4668c0";
-      fsType = "ext4";
-    };
+  fileSystems."/data/Media" = {
+    device = "/dev/disk/by-uuid/857897a3-f23f-4b99-83f4-ef84d12aa8fb";
+    fsType = "ext4";
+  };
 
   swapDevices = [ ];
 
@@ -53,7 +52,8 @@
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
   # high-resolution display
 
   #This option does not have any effect
