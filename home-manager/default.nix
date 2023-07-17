@@ -5,10 +5,10 @@
     userDirs = {
       enable = true;
       documents = "$HOME/Documents";
-      download = "$Home/Downloads";
-      music = "$HOME/Media/Music";
-      videos = "$HOME/Media/Videos";
-      pictures = "$HOME/Media/Pictures";
+      download = "$HOME/Downloads";
+      music = "/data/Media/Music";
+      videos = "/data/Media/Videos";
+      pictures = "/data/Media/Pictures";
     };
   };
 }
