@@ -11,10 +11,16 @@
       extraGroups = [ "shared" ];
     };
   };
-  services.openssh = {
-    enable = true;
-    settings.PasswordAuthentication = false;
-    settings.KbdInteractiveAuthentication = false;
-    settings.PermitRootLogin = "yes";
+  #I need ssh service only for this user
+  #services.openssh = {
+  #  enable = true;
+  #  settings.PasswordAuthentication = false;
+  #  settings.KbdInteractiveAuthentication = false;
+  #  settings.PermitRootLogin = "yes";
+  #};
+  home-manager.users.serg = {
+    programs.ssh = {
+      enable = true;
+    };
   };
 }
