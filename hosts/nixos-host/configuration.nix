@@ -7,17 +7,19 @@
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./kernel.nix
-    ./desktop/gnome.nix
-    ./services/sound.nix
-    ./services/syncthing.nix
-    ./programs
-    ./users
-    ./scripts
+    ../../desktop/gnome.nix
+    ../../services/sound.nix
+    ../../services/syncthing.nix
+    ../../programs
+    ../../users
+    ../../scripts
   ];
 
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.loader.systemd-boot.enable = true;
+
+  # change default linux kernel to xandmod
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
   # update intel microcode.
   hardware.cpu.intel.updateMicrocode = true;
