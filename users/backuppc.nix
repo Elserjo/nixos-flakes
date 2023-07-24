@@ -1,6 +1,11 @@
 { config, ... }:
 
 {
+  #Additional group for shared folders
+  users.groups = {
+    shared = {};
+  };
+
   users.users = {
     backuppc = {
       description = "User for BackupPC tasks";
@@ -11,6 +16,12 @@
       extraGroups = [ "shared" ];
     };
   };
+
+  #Add my main user to extra group
+  users.users.serg = {
+    extraGroups = [ "shared" ];
+  };
+
   #I need ssh service only for this user
   services.openssh = {
     enable = true;
