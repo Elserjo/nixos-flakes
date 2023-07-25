@@ -7,7 +7,7 @@
   home.homeDirectory = "/home/serg";
 
   imports = [
-    ../..home-manager/xdg.nix
+    ../../home-manager/xdg.nix
     ../../home-manager/programs
   ];
   home.stateVersion = "22.11"; # Please read the comment before changing.
