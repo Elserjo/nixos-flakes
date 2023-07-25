@@ -1,6 +1,4 @@
 {
-  imports = [ ./home.nix ];
-
   xdg = {
     userDirs = {
       enable = true;
