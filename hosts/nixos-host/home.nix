@@ -8,7 +8,8 @@
 
   imports = [
     ../../home-manager/xdg.nix
-    ../../home-manager/programs
+    ../../home-manager/programs/firefox.nix
+    ../../home-manager/programs/git.nix
   ];
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
