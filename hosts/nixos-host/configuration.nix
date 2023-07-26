@@ -13,9 +13,9 @@
     ../../services/syncthing.nix
     ../../programs/virtualbox.nix
     ../../programs/steam.nix
-    ../../scripts
+    ../../scripts/garmin.nix
+    ../../scripts/music.nix
   ];
-
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.loader.systemd-boot.enable = true;
 
@@ -26,9 +26,7 @@
   hardware.cpu.intel.updateMicrocode = true;
 
   # networking.hostName = "nixos"; # Define your hostname.
-  # Pick only one of the below networking options.
-  networking.networkmanager.enable =
-    true; # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true;
 
   #Set your time zone.
   time.timeZone = "Europe/Moscow";
