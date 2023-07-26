@@ -8,10 +8,11 @@
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../desktop/gnome.nix
+    ../../users/backuppc.nix
     ../../services/sound.nix
     ../../services/syncthing.nix
-    ../../programs
-    ../../users/backuppc.nix
+    ../../programs/virtualbox.nix
+    ../../programs/steam.nix
     ../../scripts
   ];
 
