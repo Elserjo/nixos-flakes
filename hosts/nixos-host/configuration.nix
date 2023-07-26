@@ -11,7 +11,7 @@
     ../../services/sound.nix
     ../../services/syncthing.nix
     ../../programs
-    ../../users
+    ../../users/backuppc.nix
     ../../scripts
   ];
 
