@@ -28,6 +28,9 @@
   # networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
 
+  # allow open port for soulseek
+  networking.firewall.allowedTCPPorts = [ 2234 ];
+
   #Set your time zone.
   time.timeZone = "Europe/Moscow";
 
