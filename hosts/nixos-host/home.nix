@@ -34,6 +34,7 @@
     freefilesync
     #If i need unstable: "unstable.nicotine"
     nicotine-plus
+    libreoffice
   ];
 
   # Let Home Manager install and manage itself.
