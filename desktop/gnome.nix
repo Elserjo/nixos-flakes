@@ -18,7 +18,6 @@
     cheese
     gnome-logs
     gnome-music
-    gnome-terminal
     gnome-maps
     gnome-contacts
     gnome-system-monitor
