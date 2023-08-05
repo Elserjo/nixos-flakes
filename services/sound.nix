@@ -1,7 +1,7 @@
-{ cfg, ... }:
+{ config, ... }:
 
 {
-  # According wiki sound should be disabled
+  security.rtkit.enable = true;
   sound.enable = true;
   # We need disable pulseaudio for pipewire
   hardware.pulseaudio.enable = false;
