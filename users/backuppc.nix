@@ -23,7 +23,7 @@ in {
   };
 
   #Additional group for shared folders
-  users.groups = { shared = { members = [ "serg" "backuppc" ]; }; };
+  users.groups = { shared = { members = [ "backuppc" ]; }; };
 
   #I need ssh service only for this user
   services.openssh = {
