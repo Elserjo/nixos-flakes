@@ -2,6 +2,7 @@
 
 # See good example here
 # https://github.com/xddxdd/nixos-config/blob/46f40f1528094e394fe5b80fae799d507f27f4cf/hosts/lt-hp-omen/configuration.nix
+# Example set permisisons in bindfs "perms=u+rw:g+r:o-rwx"
 let
   bindfsMountOptions = [
     "force-group=shared"
@@ -10,7 +11,6 @@ let
     "chgrp-ignore"
     "x-gvfs-hide"
   ];
-
 in {
   users.users = {
     backuppc = {
