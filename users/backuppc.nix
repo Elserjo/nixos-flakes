@@ -7,8 +7,11 @@ let
   bindfsMountOptions = [
     "force-group=shared"
     "force-user=backuppc"
+    "create-for-user=serg"
+    "create-for-group=users"
     "chown-ignore"
     "chgrp-ignore"
+    "perms=u=rwX:g=rX:o="
     "x-gvfs-hide"
   ];
 in {
