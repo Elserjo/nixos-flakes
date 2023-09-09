@@ -20,6 +20,7 @@
     tor-browser-bundle-bin
     rpcs3
     pcsx2
+    ppsspp-qt
     qbittorrent
     gimp
     geeqie
