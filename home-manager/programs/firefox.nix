@@ -64,6 +64,7 @@
         "media.autoplay.blocking_policy" = 2;
         "media.autoplay.default" = 5;
         "media.autoplay.enabled" = false;
+        "browser.download.start_downloads_in_tmp_dir" = true;
       };
     };
   };
