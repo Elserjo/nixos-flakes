@@ -28,7 +28,7 @@
     picard
     keepassxc
     quodlibet-full
-    tdesktop
+    tdesktop-no-ads
     # modifications.tdesktop
     emacs-gtk
     freefilesync
