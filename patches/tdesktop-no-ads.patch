@@ -1,0 +1,45 @@
+diff --git i/Telegram/SourceFiles/data/data_sponsored_messages.cpp w/Telegram/SourceFiles/data/data_sponsored_messages.cpp
+index fa21af469..263ea3e61 100644
+--- i/Telegram/SourceFiles/data/data_sponsored_messages.cpp
++++ w/Telegram/SourceFiles/data/data_sponsored_messages.cpp
+@@ -179,39 +179,7 @@ bool SponsoredMessages::canHaveFor(not_null<History*> history) const {
+ }
+ 
+ void SponsoredMessages::request(not_null<History*> history, Fn<void()> done) {
+-	if (!canHaveFor(history)) {
+-		return;
+-	}
+-	auto &request = _requests[history];
+-	if (request.requestId || TooEarlyForRequest(request.lastReceived)) {
+-		return;
+-	}
+-	{
+-		const auto it = _data.find(history);
+-		if (it != end(_data)) {
+-			auto &list = it->second;
+-			// Don't rebuild currently displayed messages.
+-			const auto proj = [](const Entry &e) {
+-				return e.item != nullptr;
+-			};
+-			if (ranges::any_of(list.entries, proj)) {
+-				return;
+-			}
+-		}
+-	}
+-	const auto channel = history->peer->asChannel();
+-	Assert(channel != nullptr);
+-	request.requestId = _session->api().request(
+-		MTPchannels_GetSponsoredMessages(
+-			channel->inputChannel)
+-	).done([=](const MTPmessages_sponsoredMessages &result) {
+-		parse(history, result);
+-		if (done) {
+-			done();
+-		}
+-	}).fail([=] {
+-		_requests.remove(history);
+-	}).send();
++	return;
+ }
+ 
+ void SponsoredMessages::parse(

@@ -6,14 +6,12 @@
   home.username = "serg";
   home.homeDirectory = "/home/serg";
 
-  imports = [
-    ./xdg.nix
-    ./programs/firefox.nix
-    ./programs/git.nix
-  ];
+  imports = [ ./xdg.nix ./programs/firefox.nix ./programs/git.nix ];
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
-  nixpkgs = { overlays = [ outputs.overlays.unstable-packages ]; };
+  nixpkgs = {
+    overlays = [ outputs.overlays.unstable-packages outputs.overlays.modifications ];
+  };
 
   home.packages = with pkgs; [
     radeontop
@@ -31,6 +29,7 @@
     keepassxc
     quodlibet-full
     tdesktop
+    # modifications.tdesktop
     emacs-gtk
     freefilesync
     #If i need unstable: "unstable.nicotine"
