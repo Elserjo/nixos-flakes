@@ -5,9 +5,9 @@
     unstable = import inputs.nixpkgs { system = final.system; };
   };
   modifications = final: prev: {
-    tdesktop = prev.tdesktop.overrideAttrs (old: {
-      patches = [
-        ./patches/tdesktop-no-ads.patch
+    tdesktop-no-ads = prev.tdesktop.overrideAttrs (old: {
+      patches = old.patches ++ [
+        ../patches/tdesktop-no-ads.patch
       ];
     });
   };
