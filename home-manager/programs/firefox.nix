@@ -24,16 +24,7 @@
         "0300".enable = true;
         "0400".enable = true;
         "0600".enable = true;
-        "0800" = {
-          enable = true;
-          "0801" = {
-            enable = true;
-            "keyword.enabled" = {
-              enable = true;
-              value = true;
-            };
-          };
-        };
+        "0800".enable = true;
         #Passwords
         "0900".enable = true;
         #Disk avoidance
