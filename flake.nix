@@ -9,6 +9,13 @@
       ref = "nixpkgs-unstable";
     };
 
+    nixpkgs = {
+      type = "github";
+      owner = "NixOS";
+      repo = "nixpkgs";
+      ref = "nixpkgs-master";
+    };
+
     nixpkgs-stable = {
       type = "github";
       owner = "NixOS";
