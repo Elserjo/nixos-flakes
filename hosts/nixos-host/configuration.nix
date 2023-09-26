@@ -74,9 +74,9 @@
 
   programs.adb.enable = true;
 
-  fonts.fonts = with pkgs; [ terminus_font noto-fonts noto-fonts-cjk-sans ];
+  fonts.packages = with pkgs; [ terminus_font noto-fonts noto-fonts-cjk-sans ];
 
-  fonts.enableDefaultFonts = true;
+  fonts.enableDefaultPackages = true;
   fonts.fontconfig = {
     defaultFonts = {
       serif = [ "Liberation Serif" ];
