@@ -70,11 +70,7 @@
   };
 
   #Import main home-manager config with my user
-  home-manager.users.serg = {
-    imports = [
-      ../../home-manager/serg.nix
-    ];
-  };
+  home-manager.users.serg = { imports = [ ../../home-manager/serg.nix ]; };
 
   programs.adb.enable = true;
 
@@ -112,13 +108,20 @@
   # List services that you want to enable:
   services.fstrim.enable = true;
 
-  # Enable weekly garbage collect
-  nix.gc = {
-    automatic = true;
-    options = ''
-      --delete-older-than 21d
-    '';
-    dates = "weekly";
+  nix = {
+    # Enable weekly garbage collect
+    gc = {
+      automatic = true;
+      options = ''
+        --delete-older-than 21d
+      '';
+      dates = "weekly";
+    };
+    settings = {
+      max-jobs = 1;
+      cores = 4;
+      keep-going = true;
+    };
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
