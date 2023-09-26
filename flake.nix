@@ -9,13 +9,6 @@
       ref = "nixpkgs-unstable";
     };
 
-    nixpkgs-master = {
-      type = "github";
-      owner = "NixOS";
-      repo = "nixpkgs";
-      ref = "master";
-    };
-
     nixpkgs-stable = {
       type = "github";
       owner = "NixOS";
@@ -28,7 +21,7 @@
       owner = "nix-community";
       repo = "home-manager";
       ref = "master";
-      inputs = { nixpkgs.follows = "nixpkgs-master"; };
+      inputs = { nixpkgs.follows = "nixpkgs"; };
     };
 
     arkenfox-nixos = {
@@ -36,7 +29,7 @@
       owner = "dwarfmaster";
       repo = "arkenfox-nixos";
       ref = "main";
-      inputs = { nixpkgs.follows = "nixpkgs-stable"; };
+      inputs = { nixpkgs.follows = "nixpkgs"; };
     };
   };
 
@@ -59,7 +52,7 @@
       ];
     in {
       overlays = import ./overlays { inherit inputs; };
-      nixosConfigurations.nixos = nixpkgs-stable.lib.nixosSystem {
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [ ./hosts/nixos-host/configuration.nix ] ++ commonModules;
       };
