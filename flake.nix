@@ -27,8 +27,8 @@
       type = "github";
       owner = "nix-community";
       repo = "home-manager";
-      ref = "release-23.05";
-      inputs = { nixpkgs.follows = "nixpkgs-stable"; };
+      ref = "master";
+      inputs = { nixpkgs.follows = "nixpkgs-master"; };
     };
 
     arkenfox-nixos = {
