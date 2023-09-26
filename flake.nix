@@ -13,7 +13,7 @@
       type = "github";
       owner = "NixOS";
       repo = "nixpkgs";
-      ref = "nixpkgs-master";
+      ref = "master";
     };
 
     nixpkgs-stable = {
