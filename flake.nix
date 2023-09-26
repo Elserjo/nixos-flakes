@@ -9,7 +9,7 @@
       ref = "nixpkgs-unstable";
     };
 
-    nixpkgs = {
+    nixpkgs-master = {
       type = "github";
       owner = "NixOS";
       repo = "nixpkgs";
