@@ -10,7 +10,7 @@
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
   nixpkgs = {
-    overlays = [ outputs.overlays.unstable-packages outputs.overlays.modifications ];
+    overlays = [ outputs.overlays.modifications ];
   };
 
   home.packages = with pkgs; [

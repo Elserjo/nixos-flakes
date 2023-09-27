@@ -34,7 +34,7 @@
   };
 
   outputs =
-    { self, nixpkgs, nixpkgs-stable, home-manager, arkenfox-nixos, ... }@inputs:
+    { self, nixpkgs, home-manager, arkenfox-nixos, ... }@inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";
