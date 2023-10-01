@@ -35,6 +35,7 @@
     #If i need unstable: "unstable.nicotine"
     nicotine-plus
     libreoffice
+    qpdview
   ];
 
   # Let Home Manager install and manage itself.

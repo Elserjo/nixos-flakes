@@ -32,6 +32,7 @@
     iagno # go game
     hitori # sudoku game
     atomix # puzzle game
+    evince
     simple-scan
     eog
     baobab
