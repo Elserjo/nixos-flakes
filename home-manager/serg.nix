@@ -6,12 +6,11 @@
   home.username = "serg";
   home.homeDirectory = "/home/serg";
 
-  imports = [ ./xdg.nix ./programs/firefox.nix ./programs/git.nix ];
+  imports =
+    [ ./xdg.nix ./programs/firefox.nix ./programs/git.nix ./programs/sway.nix ];
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
-  nixpkgs = {
-    overlays = [ outputs.overlays.modifications ];
-  };
+  nixpkgs = { overlays = [ outputs.overlays.modifications ]; };
 
   home.packages = with pkgs; [
     radeontop
