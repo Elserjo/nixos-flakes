@@ -7,7 +7,8 @@
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../desktop/gnome.nix
+    # ../../desktop/gnome.nix
+    ../../desktop/sway.nix
     ../../users/backuppc.nix
     ../../services/sound.nix
     ../../services/syncthing.nix
