@@ -75,7 +75,7 @@
 
   programs.adb.enable = true;
 
-  fonts.packages = with pkgs; [ terminus_font noto-fonts noto-fonts-cjk-sans ];
+  fonts.packages = with pkgs; [ terminus_font source-code-pro noto-fonts noto-fonts-cjk-sans ];
 
   fonts.enableDefaultPackages = true;
   fonts.fontconfig = {
