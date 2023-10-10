@@ -18,6 +18,9 @@
   ];
   #Sway settings for my local user
   home-manager.users.serg = {
+    #I will use these packages only with sway
+    home.packages = with pkgs; [ cmus ];
+
     wayland.windowManager.sway = {
       enable = true;
       wrapperFeatures = { gtk = true; };
