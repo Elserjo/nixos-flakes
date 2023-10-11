@@ -36,6 +36,7 @@
         };
         startup =
           [ { command = "firefox"; } { command = "telegram-desktop"; } ];
+        focus.followMouse = "no";
         modifier = "Mod4";
         menu = "${pkgs.wofi}/bin/wofi --show drun";
         defaultWorkspace = "workspace 1: web";
