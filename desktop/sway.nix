@@ -34,8 +34,11 @@
           "1" = [{ app_id = "firefox"; }];
           "2" = [{ app_id = "org.telegram.desktop"; }];
         };
-        startup =
-          [ { command = "firefox"; } { command = "telegram-desktop"; } ];
+        startup = [
+          { command = "firefox"; }
+          { command = "telegram-desktop"; }
+          { command = "${pkgs.swaykbdd}/bin/swaykbdd"; }
+        ];
         focus.followMouse = "no";
         modifier = "Mod4";
         menu = "${pkgs.wofi}/bin/wofi --show drun";
