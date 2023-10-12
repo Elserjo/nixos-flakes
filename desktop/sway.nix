@@ -65,6 +65,10 @@
             timeout 1210 'swaymsg "output * dpms off"' \
             timeout 15 'if pgrep -x swaylock; then swaymsg "output * dpms off"; fi' \
             resume 'swaymsg "output * dpms on"' 
+        bindsym --locked XF86AudioPrev exec --no-startup-id ${pkgs.playerctl}/bin/playerctl previous
+        bindsym --locked XF86AudioPlay exec --no-startup-id ${pkgs.playerctl}/bin/playerctl play-pause
+        bindsym --locked XF86AudioStop exec --no-startup-id ${pkgs.playerctl}/bin/playerctl stop
+        bindsym --locked XF86AudioNext exec --no-startup-id ${pkgs.playerctl}/bin/playerctl next
       '';
       extraSessionCommands = ''
         export XDG_SESSION_TYPE=wayland
