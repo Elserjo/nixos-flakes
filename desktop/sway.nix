@@ -118,6 +118,7 @@
         border-radius: 0;
         padding: 0;
         font-family: "Cantarell", sans-serif;
+        font-family: "Cantarell", "Roboto", sans-serif;
         font-size: 14px;
       }
 
