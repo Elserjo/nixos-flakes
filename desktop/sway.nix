@@ -5,7 +5,8 @@
 
   services.dbus.enable = true;
   services.gvfs.enable = true;
-  services.gnome.gnome-keyring.enable = true;
+  # services.gnome.gnome-keyring.enable = true;
+
   xdg.portal = {
     enable = true;
     wlr.enable = true;
@@ -42,13 +43,15 @@
           { command = "firefox"; }
           { command = "telegram-desktop"; }
           { command = "${pkgs.swaykbdd}/bin/swaykbdd"; }
+          {
+            command =
+              "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          }
         ];
         focus.followMouse = "no";
         modifier = "Mod4";
         menu = "${pkgs.wofi}/bin/wofi --show drun";
-        defaultWorkspace = "workspace 1: web";
         output = { "DP-3" = { mode = "2560x1440@120Hz"; }; };
-
       };
       # I am too lazy for reading some options
       # See good example of swaylock and swayidle
@@ -65,6 +68,7 @@
             timeout 1210 'swaymsg "output * dpms off"' \
             timeout 15 'if pgrep -x swaylock; then swaymsg "output * dpms off"; fi' \
             resume 'swaymsg "output * dpms on"' 
+
         bindsym --locked XF86AudioPrev exec --no-startup-id ${pkgs.playerctl}/bin/playerctl previous
         bindsym --locked XF86AudioPlay exec --no-startup-id ${pkgs.playerctl}/bin/playerctl play-pause
         bindsym --locked XF86AudioStop exec --no-startup-id ${pkgs.playerctl}/bin/playerctl stop
@@ -117,7 +121,6 @@
         border: none;
         border-radius: 0;
         padding: 0;
-        font-family: "Cantarell", sans-serif;
         font-family: "Cantarell", "Roboto", sans-serif;
         font-size: 14px;
       }
@@ -151,14 +154,17 @@
       }
     '';
     # Fix cursor for some apps
-    home.pointerCursor = {
-      name = "Adwaita";
-      package = pkgs.gnome.adwaita-icon-theme;
-      size = 24;
-      x11 = {
-        enable = true;
-        defaultCursor = "Adwaita";
+    home = {
+      pointerCursor = {
+        name = "Adwaita";
+        package = pkgs.gnome.adwaita-icon-theme;
+        size = 24;
+        x11 = {
+          enable = true;
+          defaultCursor = "Adwaita";
+        };
       };
+      sessionVariables = { TERMINAL = "foot"; };
     };
   };
 }
