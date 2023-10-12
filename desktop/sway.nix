@@ -6,6 +6,10 @@
   services.dbus.enable = true;
   services.gvfs.enable = true;
   services.gnome.gnome-keyring.enable = true;
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+  };
 
   programs.sway.package = null;
   programs.sway.enable = true;
