@@ -24,7 +24,7 @@
   #Sway settings for my local user
   home-manager.users.serg = {
     #I will use these packages only with sway
-    home.packages = with pkgs; [ cmus ];
+    home.packages = with pkgs; [ cmus imv ];
 
     wayland.windowManager.sway = {
       enable = true;
@@ -43,6 +43,7 @@
           { command = "firefox"; }
           { command = "telegram-desktop"; }
           { command = "${pkgs.swaykbdd}/bin/swaykbdd"; }
+          { command = "${pkgs.udiskie}/bin/udiskie &"; }
           {
             command =
               "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
@@ -79,6 +80,7 @@
         export XDG_SESSION_DESKTOP=sway
         export XDG_CURRENT_DESKTOP=sway
         export MOZ_ENABLE_WAYLAND=1
+        export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
         export QT_QPA_PLATFORMTHEME=gtk3
       '';
     };
@@ -127,7 +129,6 @@
 
       window#waybar {
         background: #292828;
-        color: #ffffff;
       }
 
       #workspaces button {
@@ -138,7 +139,7 @@
 
       #workspaces button:hover, #workspaces button:active {
         background-color: #292828;
-        color: #ffffff;
+        color: #383737;
       }
 
       #workspaces button.focused {
@@ -165,6 +166,11 @@
         };
       };
       sessionVariables = { TERMINAL = "foot"; };
+    };
+    xdg.mimeApps.defaultApplications = {
+      "image/jpeg" = "imv-folder.desktop";
+      "image/png" = "imv-folder.desktop";
+      "image/gif" = "imv-folder.desktop";
     };
   };
 }
