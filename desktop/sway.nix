@@ -15,7 +15,7 @@
   programs.sway.package = null;
   programs.sway.enable = true;
 
-  fonts.packages = with pkgs; [ cantarell-fonts roboto ];
+  fonts.packages = with pkgs; [ cantarell-fonts roboto noto-fonts-color-emoji ];
 
   environment.systemPackages = with pkgs; [
     gnome3.adwaita-icon-theme
@@ -74,6 +74,10 @@
         bindsym --locked XF86AudioPlay exec --no-startup-id ${pkgs.playerctl}/bin/playerctl play-pause
         bindsym --locked XF86AudioStop exec --no-startup-id ${pkgs.playerctl}/bin/playerctl stop
         bindsym --locked XF86AudioNext exec --no-startup-id ${pkgs.playerctl}/bin/playerctl next
+
+        bindsym --locked XF86AudioMute exec --no-startup-id ${pkgs.pulseaudio}/bin//pactl set-sink-mute 0 toggle
+        bindsym --locked XF86AudioLowerVolume exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume 0 -5%
+        bindsym --locked XF86AudioRaiseVolume exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume 0 +5%
       '';
       extraSessionCommands = ''
         export XDG_SESSION_TYPE=wayland
@@ -94,7 +98,7 @@
           height = 35;
           modules-left = [ "sway/workspaces" ];
           modules-center = [ "clock" ];
-          modules-right = [ "sway/language" "tray" ];
+          modules-right = [ "sway/language" ];
 
           "sway/workspaces" = {
             "disable-scroll" = true;
@@ -102,7 +106,7 @@
           };
 
           "sway/language" = {
-            format = "{shortDescription}";
+            format = "{flag} {shortDescription}";
             tooltip = false;
           };
 
@@ -154,6 +158,18 @@
         color: #ffffff;
       }
     '';
+    # Foot settings
+    programs.foot = {
+      enable = true;
+      settings = {
+        main = {
+          font = "SourceCodePro:size=13";
+          dpi-aware = "yes";
+          selection-target = "clipboard";
+        };
+        colors = { alpha = 0.9; };
+      };
+    };
     # Fix cursor for some apps
     home = {
       pointerCursor = {
