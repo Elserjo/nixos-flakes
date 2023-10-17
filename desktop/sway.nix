@@ -15,7 +15,12 @@
   programs.sway.package = null;
   programs.sway.enable = true;
 
-  fonts.packages = with pkgs; [ cantarell-fonts roboto noto-fonts-color-emoji ];
+  fonts.packages = with pkgs; [
+    cantarell-fonts
+    roboto
+    noto-fonts-color-emoji
+    font-awesome
+  ];
 
   environment.systemPackages = with pkgs; [
     gnome3.adwaita-icon-theme
@@ -98,7 +103,7 @@
           height = 35;
           modules-left = [ "sway/workspaces" ];
           modules-center = [ "clock" ];
-          modules-right = [ "sway/language" ];
+          modules-right = [ "wireplumber" "sway/language" ];
 
           "sway/workspaces" = {
             "disable-scroll" = true;
@@ -115,9 +120,10 @@
             format = "{:%a, %d/%m %H:%M}";
           };
 
-          "tray" = {
-            icon-size = 25;
-            spacing = 10;
+          "wireplumber" = {
+            format = "{volume}% {icon}";
+            format-muted = "";
+            format-icons = [ "" "" "" ];
           };
         };
       };
@@ -151,11 +157,13 @@
       }
 
       #language,
-      #clock {
+      #clock,
+      #wireplumber {
         margin-right: 10px;		
         font-weight: bold;
         background-color: #292828;
         color: #ffffff;
+        padding: 3px;
       }
     '';
     # Foot settings
