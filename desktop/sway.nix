@@ -26,6 +26,7 @@
     gnome3.adwaita-icon-theme
     gnome.nautilus
   ];
+
   #Sway settings for my local user
   home-manager.users.serg = {
     #I will use these packages only with sway
@@ -34,9 +35,10 @@
     wayland.windowManager.sway = {
       enable = true;
       wrapperFeatures = { gtk = true; };
-      config = {
+      config = rec {
+        modifier = "Mod4";
         bars = [{
-          command = "${pkgs.waybar}/bin/waybar";
+          command = "waybar";
           # Has no effect for swaybar
           # fonts.size = 15.0;
         }];
@@ -44,18 +46,29 @@
           "1" = [{ app_id = "firefox"; }];
           "2" = [{ app_id = "org.telegram.desktop"; }];
         };
+        # bindkeysToCode = true;
+        # To do sometime
+        # keybindings = { "${modifier}+n" = "exec flacon"; };
         startup = [
           { command = "firefox"; }
           { command = "telegram-desktop"; }
           { command = "${pkgs.swaykbdd}/bin/swaykbdd"; }
           { command = "${pkgs.udiskie}/bin/udiskie &"; }
           {
-            command =
-              "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+            command = "${pkgs.autotiling}/bin/autotiling -w 1 4 5 6";
+            always = true;
           }
+          {
+            command =
+              "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &";
+            always = true;
+          }
+          # {
+          #   command =
+          #     "${pkgs.swaynotificationcenter}/bin/swaync";
+          # }
         ];
         focus.followMouse = "no";
-        modifier = "Mod4";
         menu = "${pkgs.wofi}/bin/wofi --show drun";
         output = { "DP-3" = { mode = "2560x1440@120Hz"; }; };
       };
@@ -75,14 +88,16 @@
             timeout 15 'if pgrep -x swaylock; then swaymsg "output * dpms off"; fi' \
             resume 'swaymsg "output * dpms on"' 
 
-        bindsym --locked XF86AudioPrev exec --no-startup-id ${pkgs.playerctl}/bin/playerctl previous
-        bindsym --locked XF86AudioPlay exec --no-startup-id ${pkgs.playerctl}/bin/playerctl play-pause
-        bindsym --locked XF86AudioStop exec --no-startup-id ${pkgs.playerctl}/bin/playerctl stop
-        bindsym --locked XF86AudioNext exec --no-startup-id ${pkgs.playerctl}/bin/playerctl next
+        bindsym XF86AudioPrev exec --no-startup-id ${pkgs.playerctl}/bin/playerctl previous
+        bindsym XF86AudioPlay exec --no-startup-id ${pkgs.playerctl}/bin/playerctl play-pause
+        bindsym XF86AudioStop exec --no-startup-id ${pkgs.playerctl}/bin/playerctl stop
+        bindsym XF86AudioNext exec --no-startup-id ${pkgs.playerctl}/bin/playerctl next
 
-        bindsym --locked XF86AudioMute exec --no-startup-id ${pkgs.pulseaudio}/bin//pactl set-sink-mute 0 toggle
-        bindsym --locked XF86AudioLowerVolume exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume 0 -5%
-        bindsym --locked XF86AudioRaiseVolume exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume 0 +5%
+        bindsym XF86AudioMute exec --no-startup-id ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+        bindsym XF86AudioLowerVolume exec --no-startup-id ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+        bindsym XF86AudioRaiseVolume exec --no-startup-id ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+
+        bindsym Mod4+m exec picard
       '';
       extraSessionCommands = ''
         export XDG_SESSION_TYPE=wayland
@@ -96,6 +111,7 @@
 
     programs.waybar = {
       enable = true;
+      systemd.enable = true;
       settings = {
         mainBar = {
           layer = "top";
@@ -103,7 +119,7 @@
           height = 35;
           modules-left = [ "sway/workspaces" ];
           modules-center = [ "clock" ];
-          modules-right = [ "wireplumber" "sway/language" ];
+          modules-right = [ "bluetooth" "wireplumber" "sway/language" ];
 
           "sway/workspaces" = {
             "disable-scroll" = true;
@@ -124,6 +140,18 @@
             format = "{volume}% {icon}";
             format-muted = "";
             format-icons = [ "" "" "" ];
+          };
+
+          "bluetooth" = {
+            format = " {status}";
+            format-disabled = "";
+            format-connected = " {num_connections} connected";
+            tooltip-format-connected = ''
+              {controller_alias}	{controller_address}
+
+              {device_enumerate}'';
+            tooltip-format-enumerate-connected =
+              "{device_alias}	{device_address}";
           };
         };
       };
@@ -158,6 +186,7 @@
 
       #language,
       #clock,
+      #bluetooth,
       #wireplumber {
         margin-right: 10px;		
         font-weight: bold;
