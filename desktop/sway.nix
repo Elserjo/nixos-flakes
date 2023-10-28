@@ -10,6 +10,7 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   programs.sway.package = null;
@@ -23,8 +24,9 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    glib
     gnome3.adwaita-icon-theme
-    gnome.nautilus
+    xfce.thunar
   ];
 
   #Sway settings for my local user
@@ -45,6 +47,8 @@
         assigns = {
           "1" = [{ app_id = "firefox"; }];
           "2" = [{ app_id = "org.telegram.desktop"; }];
+          "3" = [{ app_id = "foot"; }];
+          "4" = [{ app_id = "transmission-gtk"; }];
         };
         # bindkeysToCode = true;
         # To do sometime
@@ -52,15 +56,17 @@
         startup = [
           { command = "firefox"; }
           { command = "telegram-desktop"; }
+          { command = "transmission-gtk"; }
+          { command = "${pkgs.foot}/bin/foot"; }
           { command = "${pkgs.swaykbdd}/bin/swaykbdd"; }
           { command = "${pkgs.udiskie}/bin/udiskie &"; }
           {
-            command = "${pkgs.autotiling}/bin/autotiling -w 1 4 5 6";
+            command = "${pkgs.autotiling}/bin/autotiling -w 1 5 6 7 8 9";
             always = true;
           }
           {
             command =
-              "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &";
+              "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
             always = true;
           }
           # {
@@ -81,6 +87,14 @@
             xkb_layout us,ru
             xkb_options grp:win_space_toggle
         }
+        set $gnome-schema org.gnome.desktop.interface
+        set $cursor-theme 'Adwaita'
+        set $cursor-size '24'
+
+        exec_always {
+            gsettings set $gnome-schema cursor-theme $cursor-theme
+            gsettings set $gnome-schema cursor-size $cursor-size
+        }
 
         exec ${pkgs.swayidle}/bin/swayidle -w \
             timeout 1200 '${pkgs.swaylock}/bin/swaylock -f -c 353535' \
@@ -99,19 +113,10 @@
 
         bindsym Mod4+m exec picard
       '';
-      extraSessionCommands = ''
-        export XDG_SESSION_TYPE=wayland
-        export XDG_SESSION_DESKTOP=sway
-        export XDG_CURRENT_DESKTOP=sway
-        export MOZ_ENABLE_WAYLAND=1
-        export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-        export QT_QPA_PLATFORMTHEME=gtk3
-      '';
     };
 
     programs.waybar = {
       enable = true;
-      systemd.enable = true;
       settings = {
         mainBar = {
           layer = "top";
@@ -119,7 +124,7 @@
           height = 35;
           modules-left = [ "sway/workspaces" ];
           modules-center = [ "clock" ];
-          modules-right = [ "bluetooth" "wireplumber" "sway/language" ];
+          modules-right = [ "bluetooth" "pulseaudio" "sway/language" ];
 
           "sway/workspaces" = {
             "disable-scroll" = true;
@@ -136,7 +141,7 @@
             format = "{:%a, %d/%m %H:%M}";
           };
 
-          "wireplumber" = {
+          "pulseaudio" = {
             format = "{volume}% {icon}";
             format-muted = "";
             format-icons = [ "" "" "" ];
@@ -187,7 +192,7 @@
       #language,
       #clock,
       #bluetooth,
-      #wireplumber {
+      #pulseaudio {
         margin-right: 10px;		
         font-weight: bold;
         background-color: #292828;
@@ -218,7 +223,6 @@
           defaultCursor = "Adwaita";
         };
       };
-      sessionVariables = { TERMINAL = "foot"; };
     };
     xdg.mimeApps.defaultApplications = {
       "image/jpeg" = "imv-folder.desktop";
