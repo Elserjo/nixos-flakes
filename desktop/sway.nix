@@ -32,7 +32,7 @@
   #Sway settings for my local user
   home-manager.users.serg = {
     #I will use these packages only with sway
-    home.packages = with pkgs; [ cmus transmission-gtk imv ];
+    home.packages = with pkgs; [ musikcube transmission-gtk imv ];
 
     wayland.windowManager.sway = {
       enable = true;
@@ -48,7 +48,10 @@
           "1" = [{ app_id = "firefox"; }];
           "2" = [{ app_id = "org.telegram.desktop"; }];
           "3" = [{ app_id = "foot"; }];
-          "4" = [{ app_id = "transmission-gtk"; }];
+          "4" = [
+            { app_id = "transmission-gtk"; }
+            { app_id = "org.nicotine_plus.Nicotine"; }
+          ];
         };
         # bindkeysToCode = true;
         # To do sometime
