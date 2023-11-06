@@ -10,7 +10,6 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   programs.sway.package = null;
@@ -32,11 +31,11 @@
   #Sway settings for my local user
   home-manager.users.serg = {
     #I will use these packages only with sway
-    home.packages = with pkgs; [ musikcube transmission-gtk imv ];
+    home.packages = with pkgs; [ musikcube transmission-gtk oculante ];
 
     wayland.windowManager.sway = {
       enable = true;
-      wrapperFeatures = { gtk = true; };
+      # wrapperFeatures = { gtk = true; };
       config = rec {
         modifier = "Mod4";
         bars = [{
@@ -115,6 +114,8 @@
         bindsym XF86AudioRaiseVolume exec --no-startup-id ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
 
         bindsym Mod4+m exec picard
+
+        for_window [app_id="Tor Browser"] floating enable
       '';
     };
 
@@ -227,10 +228,10 @@
         };
       };
     };
-    xdg.mimeApps.defaultApplications = {
-      "image/jpeg" = "imv-folder.desktop";
-      "image/png" = "imv-folder.desktop";
-      "image/gif" = "imv-folder.desktop";
-    };
+    # xdg.mimeApps.defaultApplications = {
+    #   "image/jpeg" = "imv-folder.desktop";
+    #   "image/png" = "imv-folder.desktop";
+    #   "image/gif" = "imv-folder.desktop";
+    # };
   };
 }
