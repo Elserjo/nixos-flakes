@@ -116,6 +116,7 @@
         bindsym Mod4+m exec picard
 
         for_window [app_id="Tor Browser"] floating enable
+        for_window [app_id="mediainfo-gui"] floating enable
       '';
     };
 
