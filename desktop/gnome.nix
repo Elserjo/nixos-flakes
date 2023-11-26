@@ -10,6 +10,7 @@
   services.gnome = {
     gnome-online-accounts.enable = false;
     gnome-remote-desktop.enable = false;
+    gnome-user-share.enable = false;
     rygel.enable = false;
     gnome-browser-connector.enable = false;
   };
