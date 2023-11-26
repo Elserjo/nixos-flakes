@@ -34,6 +34,7 @@
     nicotine-plus
     libreoffice
     qpdfview
+    qbittorrent
   ];
 
   # Let Home Manager install and manage itself.
