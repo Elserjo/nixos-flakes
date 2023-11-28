@@ -13,39 +13,43 @@
     gnome-user-share.enable = false;
     rygel.enable = false;
     gnome-browser-connector.enable = false;
+    gnome-initial-setup.enable = false;
+
   };
 
-  environment.gnome.excludePackages = (with pkgs.gnome; [
-    cheese
-    gnome-logs
-    gnome-music
-    gnome-maps
-    gnome-contacts
-    gnome-system-monitor
-    gnome-disk-utility
-    gnome-calendar
-    epiphany # web browser
-    geary # email reader
-    #evince # document viewer
-    gnome-characters
-    totem # video player
-    tali # poker game
-    iagno # go game
-    hitori # sudoku game
-    atomix # puzzle game
-    evince
-    simple-scan
-    eog
-    baobab
-  ]) ++ (with pkgs; [
-    gnome-tour
-    gnome-photos
-    gnome-connections
-    gnome-usage
-    gnome-secrets
-    gnome-console
-    gnome-text-editor
-  ]);
-
-  environment.systemPackages = with pkgs; [ gnome.gnome-terminal gnome.gedit ];
+  environment = {
+    gnome.excludePackages = (with pkgs.gnome; [
+      cheese
+      gnome-logs
+      gnome-music
+      gnome-maps
+      gnome-contacts
+      gnome-system-monitor
+      gnome-disk-utility
+      gnome-calendar
+      epiphany # web browser
+      geary # email reader
+      #evince # document viewer
+      gnome-characters
+      totem # video player
+      tali # poker game
+      iagno # go game
+      hitori # sudoku game
+      atomix # puzzle game
+      evince
+      simple-scan
+      eog
+      baobab
+    ]) ++ (with pkgs; [
+      gnome-tour
+      gnome-photos
+      gnome-connections
+      gnome-usage
+      gnome-secrets
+      gnome-console
+      gnome-text-editor
+    ]);
+    systemPackages = (with pkgs.gnome; [ gnome-terminal gedit ])
+      ++ (with pkgs.gnomeExtensions; [ tiling-assistant noannoyance-2 ]);
+  };
 }
