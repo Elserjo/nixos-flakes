@@ -35,6 +35,7 @@
     libreoffice
     qpdfview
     qbittorrent
+    kdenlive
   ];
 
   # Let Home Manager install and manage itself.
