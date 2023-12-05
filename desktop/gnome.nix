@@ -49,7 +49,6 @@
       gnome-console
       gnome-text-editor
     ]);
-    systemPackages = (with pkgs.gnome; [ gnome-terminal gedit ])
-      ++ (with pkgs.gnomeExtensions; [ tiling-assistant noannoyance-2 ]);
+    systemPackages = (with pkgs.gnome; [ gnome-terminal gedit ]);
   };
 }
