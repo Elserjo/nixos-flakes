@@ -48,6 +48,8 @@
       gnome-secrets
       gnome-console
       gnome-text-editor
+      loupe # new gnome default image viewer
+      snapshot # gnome camera app
     ]);
     systemPackages = (with pkgs.gnome; [ gnome-terminal gedit ]);
   };
