@@ -36,6 +36,7 @@
     qpdfview
     qbittorrent
     kdenlive
+    vlc
   ];
 
   # Let Home Manager install and manage itself.
