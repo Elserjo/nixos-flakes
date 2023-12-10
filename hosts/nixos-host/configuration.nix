@@ -29,8 +29,8 @@
   # networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
 
-  # allow open port for soulseek
-  networking.firewall.allowedTCPPorts = [ 2234 ];
+  # allow open ports for soulseek
+  networking.firewall = { allowedTCPPorts = [ 2234 ]; };
 
   #Set your time zone.
   time.timeZone = "Europe/Moscow";
@@ -75,7 +75,12 @@
 
   programs.adb.enable = true;
 
-  fonts.packages = with pkgs; [ terminus_font source-code-pro noto-fonts noto-fonts-cjk-sans ];
+  fonts.packages = with pkgs; [
+    terminus_font
+    source-code-pro
+    noto-fonts
+    noto-fonts-cjk-sans
+  ];
 
   fonts.enableDefaultPackages = true;
   fonts.fontconfig = {
