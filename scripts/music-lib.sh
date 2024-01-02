@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# First is outputDir
+# First arg is outputDir
 outputDir="${1}"
 
 #Set list of all flac files in all directories
@@ -64,6 +64,8 @@ while [ "$#" != 0 ]; do
         onError "Input is not exists \"${inputPath}\""
     fi
 
+    # I can add single flac file or directory. It will anyway scan all flac files
+    # in current dir
     if [[ -f "${inputPath}" ]]; then
         currentDir="$(dirname "${inputPath}")"
     else
@@ -79,7 +81,8 @@ while [ "$#" != 0 ]; do
 
     checkUnique "${files[@]}" #This function also sets artistName and albumName variables
     hardlinkSavePath="${outputDir}/${artistName}/${albumName}"
-    mkdir -p -v "${hardlinkSavePath}"
+    # Canonize outputDir path
+    mkdir -p -v "$(realpath -m "${hardlinkSavePath}")"
 
     for inputFile in "${files[@]}"; do
         if ln -P -t "${hardlinkSavePath}" "${inputFile}"; then

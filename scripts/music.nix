@@ -9,10 +9,11 @@ let
   };
   # This script is echo escaped by ''
   # See also https://stackoverflow.com/questions/76862407/run-a-bash-command-in-gnome-terminal
+  # First arg is always output path for musicLib
   musicLibWrapper = pkgs.writeScriptBin "music-lib-wrapper" ''
     #!/usr/bin/env bash
-    inputArgs=( "''${@}" )
-    gnome-terminal -- ${pkgs.bash}/bin/bash -c '${musicLib}/bin/music-lib "''${@}"' -- "''${inputArgs[@]}"
+    dirName=( "''${@}" )
+    gnome-terminal -- ${pkgs.bash}/bin/bash -c '${musicLib}/bin/music-lib "''${@}"' -- ${outputDir} "''${dirName[@]}"
   '';
 
 in {
