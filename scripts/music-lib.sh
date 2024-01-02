@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-outputDir="/data/Media/DAP/MusicLib"
+# First is outputDir
+outputDir="${1}"
 
 #Set list of all flac files in all directories
 function onError() {
@@ -48,16 +49,20 @@ function checkUnique() {
             onError "Album tag is not same [${currentAlbum}:${albumName}]"
     done
 }
-#Checking that all dirs or files are exists
+# Checking that all dirs or files are exists
 for inputPath in "${@}"; do
     if ! realpath -e "${inputPath}"; then
         onError "Input is not exists \"${inputPath}\""
     fi
 done
 
-for inputPath in "${@}"; do
-    #Remove backslash from current directory
-    #Input path may be file or directory
+shift 1 # always skip first arg
+while [ "$#" != 0 ]; do
+    inputPath="${1}"
+
+    if ! realpath -e "${inputPath}"; then
+        onError "Input is not exists \"${inputPath}\""
+    fi
 
     if [[ -f "${inputPath}" ]]; then
         currentDir="$(dirname "${inputPath}")"
@@ -93,6 +98,7 @@ for inputPath in "${@}"; do
         fi
     done
     unset files #Clean array before new iteration
+    shift
 done
 
 #Wait for user confirm
