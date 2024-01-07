@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 
 let
-  outputDir = "/data/Media/DAP/MusicLib";
+  futura_outputDir = "/data/Media/DAP/MusicLib/SE180";
+  fiio_outputDir = "/data/Media/DAP/MusicLib/X5III";
   musicLib = pkgs.writeShellApplication {
     name = "music-lib";
     text = builtins.readFile ./music-lib.sh;
@@ -13,18 +14,26 @@ let
   musicLibWrapper = pkgs.writeScriptBin "music-lib-wrapper" ''
     #!/usr/bin/env bash
     dirName=( "''${@}" )
-    gnome-terminal -- ${pkgs.bash}/bin/bash -c '${musicLib}/bin/music-lib "''${@}"' -- ${outputDir} "''${dirName[@]}"
+    gnome-terminal -- ${pkgs.bash}/bin/bash -c '${musicLib}/bin/music-lib "''${@}"' -- "''${dirName[@]}"
   '';
 
 in {
   home-manager.users.serg = {
     xdg.desktopEntries = {
-      musicLib = {
+      musicLib_se180 = {
         type = "Application";
-        name = "add-to-music-lib";
+        name = "add-to-music-lib-se180";
         noDisplay = true;
         terminal = true;
-        exec = "${musicLib}/bin/music-lib ${outputDir} %F";
+        exec = "${musicLib}/bin/music-lib ${futura_outputDir} %F";
+        mimeType = [ "audio/flac" "audio/x-flac" ];
+      };
+      musicLib_x5iii = {
+        type = "Application";
+        name = "add-to-music-lib-x5iii";
+        noDisplay = true;
+        terminal = true;
+        exec = "${musicLib}/bin/music-lib ${fiio_outputDir} %F";
         mimeType = [ "audio/flac" "audio/x-flac" ];
       };
     };
