@@ -34,7 +34,7 @@
     nicotine-plus
     libreoffice
     qpdfview
-    qbittorrent
+    qbittorrent-qt5
     kdenlive
     vlc
   ];
