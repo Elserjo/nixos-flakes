@@ -46,7 +46,7 @@ in {
       options = bindfsMountOptions;
     };
     "/nix/persistent/backuppc/Garmin Edge 830" = {
-      device = "/data/Backup/Garmin Edge 830";
+      device = "/data/Work/Backup/Garmin Edge 830";
       fsType = "fuse.bindfs";
       options = bindfsMountOptions;
     };

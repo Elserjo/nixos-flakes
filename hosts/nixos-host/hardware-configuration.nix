@@ -27,11 +27,6 @@
     fsType = "vfat";
   };
 
-  fileSystems."/data/Backup" = {
-    device = "/dev/disk/by-uuid/e42823cd-1c64-43b3-bfda-b9e6cd4668c0";
-    fsType = "ext4";
-  };
-
   fileSystems."/data/Work" = {
     device = "/dev/disk/by-uuid/20a32260-a248-44f2-ab27-9e453f0b0707";
     fsType = "ext4";

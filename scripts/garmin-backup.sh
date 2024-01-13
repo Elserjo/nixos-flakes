@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-backupDir="/data/Backup/Garmin Edge 830/"
+backupDir="/data/Work/Backup/Garmin Edge 830/"
 #I need to export this variables for notify-send
 export DISPLAY=:0
 export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
