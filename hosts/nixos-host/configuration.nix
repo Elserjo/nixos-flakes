@@ -23,6 +23,8 @@
   # change default linux kernel to xandmod
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
+  boot.initrd.systemd.enable = true;
+  boot.plymouth.enable = true;
   # update intel microcode.
   hardware.cpu.intel.updateMicrocode = true;
 
