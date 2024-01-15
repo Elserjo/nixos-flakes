@@ -12,6 +12,10 @@
   boot.kernelModules = [ "kvm-intel" "nct6775" ];
   boot.extraModulePackages = [ ];
 
+  boot.initrd.luks.devices."data" = {
+    device = "/dev/disk/by-uuid/814a3c86-9694-4fcd-83ab-e58fb67e6f76";
+  };
+
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/80971aac-983f-493a-96b9-351ee0602111";
     fsType = "ext4";
@@ -28,12 +32,12 @@
   };
 
   fileSystems."/data/Work" = {
-    device = "/dev/disk/by-uuid/20a32260-a248-44f2-ab27-9e453f0b0707";
+    device = "/dev/disk/by-uuid/6eb1533c-30aa-488d-8ffc-b8d26b30e64d";
     fsType = "ext4";
   };
 
   fileSystems."/data/Media" = {
-    device = "/dev/disk/by-uuid/857897a3-f23f-4b99-83f4-ef84d12aa8fb";
+    device = "/dev/disk/by-uuid/a70ba49b-ac12-4f15-9b43-d4b00a6607f3";
     fsType = "ext4";
   };
 
