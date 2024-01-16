@@ -5,13 +5,14 @@
 # Example set permisisons in bindfs "perms=u+rw:g+r:o-rwx"
 let
   bindfsMountOptions = [
-    "force-group=shared"
+    "force-group=users"
     "force-user=backuppc"
     "create-for-user=serg"
     "create-for-group=users"
     "chown-ignore"
     "chgrp-ignore"
     "perms=u=rwX:g=rX:o="
+    "create-with-perms=u=rwX:g=rX:o=rX"
     "x-gvfs-hide"
   ];
 in {
