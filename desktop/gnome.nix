@@ -51,6 +51,7 @@
       loupe # new gnome default image viewer
       snapshot # gnome camera app
     ]);
-    systemPackages = (with pkgs.gnome; [ gnome-terminal gedit ]);
+    systemPackages = (with pkgs; [ gedit ])
+      ++ (with pkgs.gnome; [ gnome-terminal ]);
   };
 }
