@@ -50,10 +50,10 @@
     LC_MESSAGES = "ru_RU.UTF-8";
     LC_PAPER = "ru_RU.UTF-8";
     LC_NAME = "ru_RU.UTF-8";
-    LC_ADDRES = "ru_RU.UTF-8";
+    LC_ADDRESS = "ru_RU.UTF-8";
     LC_TELEPHONE = "ru_RU.UTF-8";
     LC_MEASUREMENT = "ru_RU.UTF-8";
-    LC_INDETIFICATION = "ru_RU.UTF-8";
+    LC_IDENTIFICATION="ru_RU.UTF-8";
   };
   console = {
     font = "${pkgs.terminus_font}/share/consolefonts/ter-v32n.psf.gz";
