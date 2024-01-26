@@ -45,7 +45,7 @@
     LC_CTYPE = "ru_RU.UTF-8";
     LC_NUMERIC = "ru_RU.UTF-8";
     LC_TIME = "ru_RU.UTF-8";
-    LC_COLLATE = "C";
+    LC_COLLATE = "ru_RU.UTF-8";
     LC_MONETARY = "ru_RU.UTF-8";
     LC_MESSAGES = "ru_RU.UTF-8";
     LC_PAPER = "ru_RU.UTF-8";
