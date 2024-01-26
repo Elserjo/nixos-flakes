@@ -25,8 +25,6 @@
 
   boot.initrd.systemd.enable = true;
   boot.plymouth.enable = true;
-  # update intel microcode.
-  hardware.cpu.intel.updateMicrocode = true;
 
   # networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
