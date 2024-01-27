@@ -5,7 +5,9 @@
     tdesktop-no-ads = prev.tdesktop.overrideAttrs
       (old: { patches = old.patches ++ [ ../patches/tdesktop-no-ads.patch ]; });
 
-    flacon-with-ape = prev.callPackage ./programs/flacon.nix;
+    # https://elatov.github.io/2022/01/building-a-nix-package/
+    # For qt libs we should append libsForQt5 before callPackage
+    flacon-with-ape = prev.libsForQt5.callPackage ../packages/flacon.nix { };
 
     # Just an example how to pin specific package version
     # picard = prev.picard.overrideAttrs (_: super: {
