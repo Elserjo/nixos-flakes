@@ -7,7 +7,7 @@
   home.homeDirectory = "/home/serg";
 
   imports =
-    [ ./xdg.nix ./programs/firefox.nix ./programs/git.nix ./programs/direnv.nix];
+    [ ./xdg.nix ./programs/firefox.nix ./programs/chromium ./programs/git.nix ./programs/direnv.nix];
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
   nixpkgs = { overlays = [ outputs.overlays.modifications ]; };
