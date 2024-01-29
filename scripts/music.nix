@@ -47,6 +47,7 @@ in {
       resizeImg = {
         type = "Application";
         name = "resize-image";
+        noDisplay = true;
         terminal = false;
         exec = "${resizeImg}/bin/resize-img %F";
         mimeType = [ "image/jpg" "image/x-jpg"];
