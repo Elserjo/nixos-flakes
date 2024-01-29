@@ -6,8 +6,13 @@
   home.username = "serg";
   home.homeDirectory = "/home/serg";
 
-  imports =
-    [ ./xdg.nix ./programs/firefox.nix ./programs/chromium ./programs/git.nix ./programs/direnv.nix];
+  imports = [
+    ./xdg.nix
+    ./programs/firefox.nix
+    ./programs/chromium.nix
+    ./programs/git.nix
+    ./programs/direnv.nix
+  ];
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
   nixpkgs = { overlays = [ outputs.overlays.modifications ]; };
