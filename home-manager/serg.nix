@@ -8,7 +8,6 @@
 
   imports = [
     ./xdg.nix
-    ./programs/firefox.nix
     ./programs/chromium.nix
     ./programs/git.nix
     ./programs/direnv.nix
