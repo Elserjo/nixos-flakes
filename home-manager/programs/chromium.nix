@@ -8,4 +8,5 @@
       "fddjpichkajmnkjhcmpbbjdmmcodnkej" # official rutracker plugin
     ];
   };
+  home.packages = [ pkgs.profile-cleaner ];
 }
