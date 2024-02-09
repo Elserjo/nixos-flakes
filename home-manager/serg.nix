@@ -12,7 +12,6 @@
     ./programs/git.nix
     ./programs/direnv.nix
   ];
-  home.stateVersion = "22.11"; # Please read the comment before changing.
 
   nixpkgs = { overlays = [ outputs.overlays.modifications ]; };
 

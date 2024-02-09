@@ -17,7 +17,6 @@
     ../../scripts/garmin.nix
     ../../scripts/music.nix
   ];
-  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.loader.systemd-boot.enable = true;
 
   # change default linux kernel to xandmod
@@ -29,13 +28,10 @@
   # networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
 
-  # allow open ports for soulseek
   networking.firewall = { allowedTCPPorts = [ 2234 ]; };
 
-  #Set your time zone.
   time.timeZone = "Europe/Moscow";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" "ru_RU.UTF-8/UTF-8" ];
   i18n.extraLocaleSettings = {
@@ -51,7 +47,7 @@
     LC_ADDRESS = "ru_RU.UTF-8";
     LC_TELEPHONE = "ru_RU.UTF-8";
     LC_MEASUREMENT = "ru_RU.UTF-8";
-    LC_IDENTIFICATION="ru_RU.UTF-8";
+    LC_IDENTIFICATION = "ru_RU.UTF-8";
   };
   console = {
     font = "${pkgs.terminus_font}/share/consolefonts/ter-v32n.psf.gz";
@@ -71,7 +67,10 @@
   };
 
   #Import main home-manager config with my user
-  home-manager.users.serg = { imports = [ ../../home-manager/serg.nix ]; };
+  home-manager.users.serg = {
+    imports = [ ../../home-manager/serg.nix ];
+    home.stateVersion = "24.05";
+  };
 
   programs.adb.enable = true;
 
@@ -92,7 +91,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     htop
     nix-tree
     p7zip
@@ -130,5 +129,5 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "24.05";
 }
