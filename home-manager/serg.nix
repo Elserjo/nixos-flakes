@@ -19,7 +19,7 @@
   home.packages = with pkgs; [
     radeontop
     tor-browser-bundle-bin
-    rpcs3
+    duckstation
     pcsx2
     ppsspp-qt
     gimp
