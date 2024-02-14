@@ -11,6 +11,7 @@
     ./programs/chromium.nix
     ./programs/git.nix
     ./programs/direnv.nix
+    ./programs/htop.nix
   ];
 
   nixpkgs = { overlays = [ outputs.overlays.modifications ]; };

@@ -90,12 +90,7 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    vim
-    htop
-    nix-tree
-    p7zip
-  ];
+  environment.systemPackages = with pkgs; [ vim htop nix-tree p7zip ];
 
   #By default NixOS cpu governor is powersave
   #powerManagement.cpuFreqGovernor = "performance";
