@@ -9,6 +9,17 @@
     # For qt libs we should append libsForQt5 before callPackage
     flacon-with-ape = prev.libsForQt5.callPackage ../packages/flacon.nix { };
 
+    cmus = prev.cmus.overrideAttrs (old: {
+      src = final.fetchFromGitHub {
+        owner = "cmus";
+        repo = "cmus";
+        rev = "master";
+        sha256 = "sha256-pxDIYbeJMoaAuErCghWJpDSh1WbYbhgJ7+ca5WLCrOs=";
+      };
+      # We don't need patches anymore
+      patches = [ ];
+    });
+
     # Just an example how to pin specific package version
     # picard = prev.picard.overrideAttrs (_: super: {
     #   src = final.fetchFromGitHub {

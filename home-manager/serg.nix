@@ -29,6 +29,7 @@
     picard
     keepassxc
     quodlibet-full
+    cmus
     tdesktop-no-ads
     # modifications.tdesktop
     emacs-gtk
