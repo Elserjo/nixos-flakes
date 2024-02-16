@@ -20,13 +20,18 @@ function getTags() {
     artistName="$(metaflac --show-tag "ARTIST" "${fileName}" | sed "s/ARTIST=//i")"
     albumName="$(metaflac --show-tag "ALBUM" "${fileName}" | sed "s/ALBUM=//i")"
 
-    #Album and artist name may contain '/' symbol, we need to replace it
-    albumName="${albumName//[$pattern]/_}"
-    artistName="${artistName//[$pattern]/_}"
-
     #set max albumName and artistName len
     albumName="${albumName:0:50}"
+    # Have you removed whitespace? Posix
+    # https://mywiki.wooledge.org/BashFAQ/067?highlight=%28whitespace%29
+    albumName=${albumName%" "}
     artistName="${artistName:0:50}"
+    # Have you removed whitespace?
+    artistName=${artistName%" "}
+
+    #Album and artist name may contain '/' symbol, we need to replace it
+    albumName="${albumName//[${pattern}]/_}"
+    artistName="${artistName//[${pattern}]/_}"
 
     [[ -n ${artistName} ]] || \
         onError "Tag {ARTIST} is empty in [${fileName}]"
@@ -57,7 +62,7 @@ for inputPath in "${@}"; do
 done
 
 shift 1 # always skip first arg
-while [ "$#" != 0 ]; do
+while [[ "$#" != 0 ]]; do
     inputPath="${1}"
 
     if ! realpath -e "${inputPath}"; then
@@ -90,10 +95,10 @@ while [ "$#" != 0 ]; do
         fi
     done
 
-    for cover in "${currentDir}"/*.jpg; do
+    for cover in "${currentDir}"/*.{jpg,jpeg,JPG,JPEG}; do
         coverName="$(basename "${cover}")"
         #\d (digit) won't works in POSIX
-        if [[ "${coverName}" =~ ^[0-9]{3,4}x[0-9]{3,4}\.(jpe?g)$ ]]; then
+        if [[ "${coverName}" =~ ^[0-9]{3,4}x[0-9]{3,4}.*$ ]]; then
             if ln -P -t "${hardlinkSavePath}" "${cover}"; then
                 echo "Copied [${hardlinkSavePath} $(basename "${cover}")]"
             fi
