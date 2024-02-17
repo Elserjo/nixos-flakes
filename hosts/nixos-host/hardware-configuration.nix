@@ -41,7 +41,7 @@
     fsType = "ext4";
   };
 
-  swapDevices = [ ];
+  swapDevices = [{ device = "/dev/nvme0n1p4"; }];
 
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
