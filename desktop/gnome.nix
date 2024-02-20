@@ -46,16 +46,15 @@
       gnome-connections
       gnome-usage
       gnome-secrets
-      gnome-console
       gnome-text-editor
       loupe # new gnome default image viewer
       snapshot # gnome camera app
     ]);
-    systemPackages = (with pkgs; [ gedit ])
-      ++ (with pkgs.gnome; [ gnome-terminal ]);
+    systemPackages = (with pkgs; [ gedit ]);
+    # ++ (with pkgs.gnome; [ gnome-terminal ]);
     sessionVariables = {
       # See bug https://bugs.launchpad.net/ubuntu/+source/gnome-settings-daemon/+bug/1971434
-     MUTTER_DEBUG_ENABLE_ATOMIC_KMS = "0";
+      MUTTER_DEBUG_ENABLE_ATOMIC_KMS = "0";
     };
   };
 }

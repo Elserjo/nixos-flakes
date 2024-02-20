@@ -22,7 +22,7 @@ let
   musicLibWrapper = pkgs.writeScriptBin "music-lib-wrapper" ''
     #!/usr/bin/env bash
     dirName=( "''${@}" )
-    gnome-terminal -- ${pkgs.bash}/bin/bash -c '${musicLib}/bin/music-lib "''${@}"' -- "''${dirName[@]}"
+    kgx -- ${pkgs.bash}/bin/bash -c '${musicLib}/bin/music-lib "''${@}"' -- "''${dirName[@]}"
   '';
 
 in {
