@@ -42,6 +42,7 @@
     qbittorrent-qt5
     kdenlive
     vlc
+    upscayl
   ];
 
   # Let Home Manager install and manage itself.
