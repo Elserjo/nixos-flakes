@@ -14,6 +14,7 @@
     ];
     color_scheme = 1;
     show_program_path = false;
+    show_cpu_temperature = true;
     sort_key = config.lib.htop.fields.PERCENT_CPU;
     hide_kernel_threads = true;
     hide_threads = true;

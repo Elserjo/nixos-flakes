@@ -50,7 +50,7 @@ in {
         noDisplay = true;
         terminal = false;
         exec = "${resizeImg}/bin/resize-img %F";
-        mimeType = [ "image/jpg" "image/x-jpg"];
+        mimeType = [ "image/jpg" "image/x-jpg" ];
       };
     };
     # Use music-lib script in external programs

@@ -52,9 +52,9 @@
     ]);
     systemPackages = (with pkgs; [ gedit ]);
     # ++ (with pkgs.gnome; [ gnome-terminal ]);
-    sessionVariables = {
-      # See bug https://bugs.launchpad.net/ubuntu/+source/gnome-settings-daemon/+bug/1971434
-      MUTTER_DEBUG_ENABLE_ATOMIC_KMS = "0";
-    };
+    # sessionVariables = {
+       # See bug https://bugs.launchpad.net/ubuntu/+source/gnome-settings-daemon/+bug/1971434
+    #   MUTTER_DEBUG_ENABLE_ATOMIC_KMS = "0";
+    # };
   };
 }
