@@ -22,14 +22,20 @@
   # change default linux kernel to xandmod
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
-  boot.initrd.systemd.enable = true;
-  boot.plymouth.enable = true;
-
   # networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
 
   networking.firewall = { allowedTCPPorts = [ 2234 ]; };
-
+  # programs.firejail = {
+  #   enable = true;
+  #   wrappedBinaries = {
+  #     telegram = {
+  #       executable =
+  #         "${pkgs.lib.getBin pkgs.tdesktop-no-ads}/bin/telegram-desktop";
+  #       profile = "${pkgs.firejail}/etc/firejail/telegram-desktop.profile";
+  #     };
+  #   };
+  # };
   time.timeZone = "Europe/Moscow";
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -50,6 +56,7 @@
     LC_IDENTIFICATION = "ru_RU.UTF-8";
   };
   console = {
+    earlySetup = true;
     font = "${pkgs.terminus_font}/share/consolefonts/ter-v32n.psf.gz";
     keyMap = "ruwin_alt_sh-UTF-8";
   };
@@ -75,7 +82,6 @@
   programs.adb.enable = true;
 
   fonts.packages = with pkgs; [
-    terminus_font
     source-code-pro
     noto-fonts
     noto-fonts-cjk-sans
