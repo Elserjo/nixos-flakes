@@ -1,12 +1,26 @@
 { config, pkgs, ... }:
 
 {
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  # See https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
 
   services.xserver.excludePackages = [ pkgs.xterm ];
 
+  services.xserver = {
+    enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+    displayManager.defaultSession = "gnome";
+    displayManager.gdm.debug = true;
+    displayManager.gdm.wayland = true;
+    displayManager.gdm.settings = {
+      daemon = {
+        AutomaticLoginEnable = true;
+        AutomaticLogin = "serg";
+      };
+    };
+  };
   services.gnome = {
     gnome-online-accounts.enable = false;
     gnome-remote-desktop.enable = false;
@@ -29,7 +43,7 @@
       epiphany # web browser
       geary # email reader
       #evince # document viewer
-      gnome-characters
+      # gnome-characters
       totem # video player
       tali # poker game
       iagno # go game
