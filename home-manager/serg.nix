@@ -25,7 +25,7 @@
     gimp
     geeqie
     mkvtoolnix
-    flacon-with-ape
+    flacon
     mediainfo-gui
     picard
     keepassxc
