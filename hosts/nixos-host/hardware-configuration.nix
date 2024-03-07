@@ -12,9 +12,13 @@
   boot.kernelModules = [ "kvm-intel" "nct6775" ];
   boot.extraModulePackages = [ ];
 
-  boot.initrd.luks.devices."data" = {
-    device = "/dev/disk/by-uuid/814a3c86-9694-4fcd-83ab-e58fb67e6f76";
-  };
+  # boot.initrd.luks.devices."data" = {
+  #   device = "/dev/disk/by-uuid/814a3c86-9694-4fcd-83ab-e58fb67e6f76";
+  # };
+
+  environment.etc.crypttab.text = ''
+    data /dev/disk/by-uuid/814a3c86-9694-4fcd-83ab-e58fb67e6f76 /etc/secrets/keyfile.bin
+  '';
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/80971aac-983f-493a-96b9-351ee0602111";
@@ -29,6 +33,7 @@
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/BCE7-61C1";
     fsType = "vfat";
+    options = [ "fmask=0077" "dmask=0077" "defaults" ];
   };
 
   fileSystems."/data/Work" = {
