@@ -12,21 +12,21 @@
   boot.kernelModules = [ "kvm-intel" "nct6775" ];
   boot.extraModulePackages = [ ];
 
-  # boot.initrd.luks.devices."data" = {
-  #   device = "/dev/disk/by-uuid/814a3c86-9694-4fcd-83ab-e58fb67e6f76";
-  # };
+   boot.initrd.luks.devices."root" = {
+     device = "/dev/disk/by-uuid/72175e17-e454-468e-b375-91b215f8a348";
+   };
 
   environment.etc.crypttab.text = ''
     data /dev/disk/by-uuid/814a3c86-9694-4fcd-83ab-e58fb67e6f76 /etc/secrets/keyfile.bin
   '';
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/80971aac-983f-493a-96b9-351ee0602111";
+    device = "/dev/disk/by-uuid/09d73ac5-eed3-4636-be67-225810ba40d4";
     fsType = "ext4";
   };
 
   fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/81c6ea36-c820-455d-a9fb-fcaac4a41e24";
+    device = "/dev/disk/by-uuid/e74e6dea-ab4c-4285-acb1-45e26cb44ddc";
     fsType = "ext4";
   };
 
@@ -46,7 +46,7 @@
     fsType = "ext4";
   };
 
-  swapDevices = [{ device = "/dev/nvme0n1p4"; }];
+  swapDevices = [{ device = "/dev/disk/by-uuid/ec1f4aa6-0e0b-4c80-8bfe-4a750efd9543"; }];
 
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
