@@ -22,6 +22,7 @@
     duckstation
     pcsx2
     ppsspp-qt
+    protonup-qt
     gimp
     geeqie
     mkvtoolnix
