@@ -104,7 +104,7 @@
 
   services.journald.extraConfig = ''
     Storage=persistent
-    SystemMaxUse=50M
+    SystemMaxUse=350M
   '';
 
   hardware.bluetooth.enable = true;
