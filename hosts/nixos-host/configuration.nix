@@ -12,6 +12,7 @@
     ../../users/backuppc.nix
     ../../services/sound.nix
     ../../services/syncthing.nix
+    ../../services/tor.nix
     ../../programs/virtualbox.nix
     ../../programs/steam.nix
     ../../scripts/garmin.nix
@@ -25,7 +26,8 @@
   # networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
 
-  networking.firewall = { allowedTCPPorts = [ 2234 ]; };
+  # networking.firewall = { allowedTCPPorts = [ 2234 ]; };
+
   # programs.firejail = {
   #   enable = true;
   #   wrappedBinaries = {
