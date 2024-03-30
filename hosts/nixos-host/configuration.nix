@@ -12,7 +12,6 @@
     ../../users/backuppc.nix
     ../../services/sound.nix
     ../../services/syncthing.nix
-    ../../services/tor.nix
     ../../programs/virtualbox.nix
     ../../programs/steam.nix
     ../../scripts/garmin.nix
