@@ -2,6 +2,7 @@
 # https://unredacted.org/guides/privacy-and-security/censorship-circumvention/tor/how-to-use-snowflake-proxies-with-the-tor-daemon/
 # https://gitlab.torproject.org/tpo/applications/tor-browser-build/-/blob/main/projects/tor-expert-bundle/pt_config.json
 # https://www.linux.org.ru/forum/security/15552851
+# https://2019.www.torproject.org/docs/tor-manual.html.en#BridgeRelay
 {
   services.tor = {
     enable = true;
