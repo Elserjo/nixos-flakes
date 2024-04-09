@@ -8,5 +8,12 @@
       videos = "/data/Media/Videos";
       pictures = "/data/Media/Pictures";
     };
+    mimeApps = {
+      enable = true;
+      associations.added = {
+        "inode/directory" =
+          [ "org.musicbrainz.Picard.desktop" "flacon.desktop" ];
+      };
+    };
   };
 }

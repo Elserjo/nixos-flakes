@@ -8,7 +8,8 @@
 
   imports = [
     ./xdg.nix
-    ./programs/chromium.nix
+    # ./programs/chromium.nix
+    # ./programs/firefox.nix
     ./programs/git.nix
     ./programs/direnv.nix
     ./programs/htop.nix
@@ -19,6 +20,7 @@
   home.packages = with pkgs; [
     radeontop
     tor-browser-bundle-bin
+    firefox-bin
     duckstation
     pcsx2
     ppsspp-qt
@@ -41,7 +43,7 @@
     qpdfview
     qbittorrent-qt5
     kdenlive
-    vlc
+    mpv
     upscayl
   ];
 
