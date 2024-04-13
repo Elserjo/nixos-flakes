@@ -11,8 +11,12 @@
     mimeApps = {
       enable = true;
       associations.added = {
-        "inode/directory" =
-          [ "org.musicbrainz.Picard.desktop" "flacon.desktop" ];
+        "inode/directory" = [
+          "org.musicbrainz.Picard.desktop"
+          "flacon.desktop"
+          "musicLib_x5iii.desktop"
+          "musicLib_se180.desktop"
+        ];
       };
     };
   };
