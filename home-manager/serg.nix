@@ -1,4 +1,4 @@
-{ outputs, config, lib, pkgs, ... }:
+{ outputs, inputs, config, lib, pkgs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -13,14 +13,27 @@
     ./programs/git.nix
     ./programs/direnv.nix
     ./programs/htop.nix
+    inputs.nix-flatpak.homeManagerModules.nix-flatpak
   ];
+
+  services.flatpak = {
+    enable = true;
+    remotes = [{
+      name = "flathub";
+      location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+    }];
+    packages = [{
+      appId = "org.torproject.torbrowser-launcher";
+      origin = "flathub";
+    }];
+  };
 
   nixpkgs = { overlays = [ outputs.overlays.modifications ]; };
 
   home.packages = with pkgs; [
     radeontop
     tor-browser-bundle-bin
-    firefox-bin
+    firefox
     duckstation
     pcsx2
     ppsspp-qt
@@ -33,7 +46,6 @@
     picard
     keepassxc
     cmus
-    tdesktop-no-ads
     # modifications.tdesktop
     emacs-gtk
     freefilesync
