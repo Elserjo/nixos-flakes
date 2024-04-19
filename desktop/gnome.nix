@@ -5,19 +5,20 @@
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
 
-  services.xserver.excludePackages = [ pkgs.xterm ];
-
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+  services = {
     displayManager.defaultSession = "gnome";
-    displayManager.gdm.debug = true;
-    displayManager.gdm.wayland = true;
-    displayManager.gdm.settings = {
-      daemon = {
-        AutomaticLoginEnable = true;
-        AutomaticLogin = "serg";
+    xserver = {
+      enable = true;
+      excludePackages = [ pkgs.xterm ];
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
+      displayManager.gdm.debug = true;
+      displayManager.gdm.wayland = true;
+      displayManager.gdm.settings = {
+        daemon = {
+          AutomaticLoginEnable = true;
+          AutomaticLogin = "serg";
+        };
       };
     };
   };
