@@ -21,17 +21,22 @@
       name = "flathub";
       location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
     }];
-    packages = [{
-      appId = "org.torproject.torbrowser-launcher";
-      origin = "flathub";
-    }];
+    packages = [
+      {
+        appId = "org.torproject.torbrowser-launcher";
+        origin = "flathub";
+      }
+      {
+        appId = "org.telegram.desktop";
+        origin = "flathub";
+      }
+    ];
   };
 
   nixpkgs = { overlays = [ outputs.overlays.modifications ]; };
 
   home.packages = with pkgs; [
     radeontop
-    tor-browser-bundle-bin
     firefox
     duckstation
     pcsx2
