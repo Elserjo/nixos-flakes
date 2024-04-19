@@ -31,10 +31,17 @@
       ref = "main";
       inputs = { nixpkgs.follows = "nixpkgs"; };
     };
+
+    nix-flatpak = {
+      type = "github";
+      owner = "gmodena";
+      repo = "nix-flatpak";
+      ref = "main";
+    };
   };
 
   outputs =
-    { self, nixpkgs, home-manager, arkenfox-nixos, ... }@inputs:
+    { self, nixpkgs, home-manager, arkenfox-nixos, nix-flatpak, ... }@inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";
@@ -47,7 +54,6 @@
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = { inherit inputs outputs; };
           home-manager.sharedModules = [ ./modules/common ];
-          # home-manager.users.serg = import ./hosts/nixos-host/home.nix;
         }
       ];
     in {
