@@ -41,6 +41,7 @@
       gnome-system-monitor
       gnome-disk-utility
       gnome-calendar
+      gnome-software
       epiphany # web browser
       geary # email reader
       #evince # document viewer
