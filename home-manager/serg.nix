@@ -17,6 +17,10 @@
   ];
 
   services.flatpak = {
+    update.auto = {
+      enable = true;
+      onCalendar = "weekly";
+    };
     remotes = [{
       name = "flathub";
       location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
@@ -30,6 +34,14 @@
         appId = "org.telegram.desktop";
         origin = "flathub";
       }
+      {
+        appId = "net.pcsx2.PCSX2";
+        origin = "flathub";
+      }
+      {
+        appId = "org.ppsspp.PPSSPP";
+        origin = "flathub";
+      }
     ];
   };
 
@@ -38,10 +50,6 @@
   home.packages = with pkgs; [
     radeontop
     firefox
-    duckstation
-    pcsx2
-    ppsspp-qt
-    protonup-qt
     gimp
     geeqie
     mkvtoolnix
