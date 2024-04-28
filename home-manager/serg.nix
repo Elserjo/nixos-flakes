@@ -42,6 +42,10 @@
         appId = "org.ppsspp.PPSSPP";
         origin = "flathub";
       }
+      {
+        appId = "org.upscayl.Upscayl";
+        origin = "flathub";
+      }
     ];
   };
 
@@ -68,7 +72,6 @@
     qbittorrent-qt5
     kdenlive
     mpv
-    upscayl
   ];
 
   # Let Home Manager install and manage itself.

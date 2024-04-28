@@ -112,7 +112,8 @@
   hardware.bluetooth.enable = true;
 
   # List services that you want to enable:
-  services.fstrim.enable = true;
+  # Fstrim should be disable with luks
+  # services.fstrim.enable = true;
 
   nix = {
     # Enable weekly garbage collect
