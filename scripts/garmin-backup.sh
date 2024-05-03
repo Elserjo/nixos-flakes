@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
+# https://forums.linuxmint.com/viewtopic.php?t=279095
 backupDir="/data/Work/Backup/Garmin Edge 830/"
 #I need to export this variables for notify-send
 export DISPLAY=:0
-export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+USER_ID="$(id -u serg)"
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/${USER_ID}/bus
 
 on_error()
 {
