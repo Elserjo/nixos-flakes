@@ -26,7 +26,7 @@
   # networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
 
-  # networking.firewall = { allowedTCPPorts = [ 2234 ]; };
+  networking.firewall = { allowedTCPPorts = [ 2234 46257 ]; };
 
   # programs.firejail = {
   #   enable = true;

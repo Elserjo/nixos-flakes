@@ -13,41 +13,7 @@
     ./programs/git.nix
     ./programs/direnv.nix
     ./programs/htop.nix
-    inputs.nix-flatpak.homeManagerModules.nix-flatpak
   ];
-
-  services.flatpak = {
-    update.auto = {
-      enable = true;
-      onCalendar = "weekly";
-    };
-    remotes = [{
-      name = "flathub";
-      location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
-    }];
-    packages = [
-      {
-        appId = "org.torproject.torbrowser-launcher";
-        origin = "flathub";
-      }
-      {
-        appId = "org.telegram.desktop";
-        origin = "flathub";
-      }
-      {
-        appId = "net.pcsx2.PCSX2";
-        origin = "flathub";
-      }
-      {
-        appId = "org.ppsspp.PPSSPP";
-        origin = "flathub";
-      }
-      {
-        appId = "org.upscayl.Upscayl";
-        origin = "flathub";
-      }
-    ];
-  };
 
   nixpkgs = { overlays = [ outputs.overlays.modifications ]; };
 
@@ -69,9 +35,12 @@
     nicotine-plus
     libreoffice
     qpdfview
-    qbittorrent-qt5
+    qbittorrent
     kdenlive
-    mpv
+    vlc
+    telegram-desktop
+    upscayl
+    tor-browser
   ];
 
   # Let Home Manager install and manage itself.

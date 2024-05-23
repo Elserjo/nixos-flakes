@@ -31,17 +31,10 @@
       ref = "main";
       inputs = { nixpkgs.follows = "nixpkgs"; };
     };
-
-    nix-flatpak = {
-      type = "github";
-      owner = "gmodena";
-      repo = "nix-flatpak";
-      ref = "main";
-    };
   };
 
   outputs =
-    { self, nixpkgs, home-manager, arkenfox-nixos, nix-flatpak, ... }@inputs:
+    { self, nixpkgs, home-manager, arkenfox-nixos, ... }@inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";

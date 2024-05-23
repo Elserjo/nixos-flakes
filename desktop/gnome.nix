@@ -65,11 +65,15 @@
       loupe # new gnome default image viewer
       snapshot # gnome camera app
     ]);
-    systemPackages = (with pkgs; [ gedit ]);
+    systemPackages =
+      (with pkgs; [ gedit qadwaitadecorations-qt6 ]);
     # ++ (with pkgs.gnome; [ gnome-terminal ]);
-    # sessionVariables = {
+    sessionVariables = {
     # See bug https://bugs.launchpad.net/ubuntu/+source/gnome-settings-daemon/+bug/1971434
     #   MUTTER_DEBUG_ENABLE_ATOMIC_KMS = "0";
-    # };
+      QT_WAYLAND_DECORATION="adwaita";
+    };
   };
+  #Need for qadwaitatheme
+  qt.enable = true;
 }
