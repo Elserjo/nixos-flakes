@@ -41,6 +41,7 @@
     telegram-desktop
     upscayl
     tor-browser
+    nicotine-plus
   ];
 
   # Let Home Manager install and manage itself.
