@@ -14,6 +14,7 @@ let
     "perms=u=rwX:g=rX:o="
     "create-with-perms=u=rwX:g=rX:o=rX"
     "x-gvfs-hide"
+    "nofail"
   ];
 in {
   users.users = {
@@ -37,8 +38,6 @@ in {
     settings.PermitRootLogin = "no";
   };
 
-  system.fsPackages = [ pkgs.bindfs ];
-
   #Sometimes i need remount for changes
   fileSystems = {
     "/nix/persistent/backuppc/Music" = {
@@ -52,4 +51,5 @@ in {
       options = bindfsMountOptions;
     };
   };
+  system.fsPackages = [ pkgs.bindfs ];
 }
