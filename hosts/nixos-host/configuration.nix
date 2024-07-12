@@ -90,14 +90,6 @@
   ];
 
   fonts.enableDefaultPackages = true;
-  fonts.fontconfig = {
-    defaultFonts = {
-      serif = [ "Liberation Serif" ];
-      sansSerif = [ "Liberation Sans" ];
-      monospace = [ "Liberation Mono" ];
-    };
-  };
-
   environment.systemPackages = with pkgs; [ vim htop nix-tree p7zip ];
 
   #By default NixOS cpu governor is powersave
