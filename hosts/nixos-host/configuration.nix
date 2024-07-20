@@ -26,18 +26,11 @@
   # networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
 
-  networking.firewall = { allowedTCPPorts = [ 2234 46257 ]; };
+  networking.firewall = {
+    allowedTCPPorts = [ 2234 46257 ];
+    checkReversePath = false;
+  };
 
-  # programs.firejail = {
-  #   enable = true;
-  #   wrappedBinaries = {
-  #     telegram = {
-  #       executable =
-  #         "${pkgs.lib.getBin pkgs.tdesktop-no-ads}/bin/telegram-desktop";
-  #       profile = "${pkgs.firejail}/etc/firejail/telegram-desktop.profile";
-  #     };
-  #   };
-  # };
   time.timeZone = "Europe/Moscow";
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -90,7 +83,7 @@
   ];
 
   fonts.enableDefaultPackages = true;
-  environment.systemPackages = with pkgs; [ vim htop nix-tree p7zip ];
+  environment.systemPackages = with pkgs; [ vim htop nix-tree ];
 
   #By default NixOS cpu governor is powersave
   #powerManagement.cpuFreqGovernor = "performance";

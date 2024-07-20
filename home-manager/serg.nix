@@ -42,6 +42,7 @@
     upscayl
     tor-browser
     nicotine-plus
+    wireplumber
   ];
 
   # Let Home Manager install and manage itself.
