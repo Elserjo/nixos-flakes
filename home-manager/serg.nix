@@ -11,6 +11,7 @@
     # ./programs/chromium.nix
     # ./programs/firefox.nix
     ./programs/git.nix
+    ./programs/vim.nix
     ./programs/direnv.nix
     ./programs/htop.nix
   ];
