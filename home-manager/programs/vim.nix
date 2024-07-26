@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ lib, ... }: {
 
   home.file.".config/vim/vimrc" = {
     text = ''

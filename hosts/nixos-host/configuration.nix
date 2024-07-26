@@ -27,7 +27,7 @@
   networking.networkmanager.enable = true;
 
   networking.firewall = {
-    allowedTCPPorts = [ 2234 46257 ];
+    allowedTCPPorts = [ 2234 ];
     checkReversePath = false;
   };
 

@@ -3,7 +3,7 @@
 # https://discourse.nixos.org/t/problems-adjusting-pipewire-sample-rate-nixos/43346/8
 {
   security.rtkit.enable = true;
-  sound.enable = true;
+  # sound.enable = true;
   # We need disable pulseaudio for pipewire
   hardware.pulseaudio.enable = false;
 

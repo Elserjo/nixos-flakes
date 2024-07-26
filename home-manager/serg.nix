@@ -44,6 +44,7 @@
     tor-browser
     nicotine-plus
     wireplumber
+    nekoray
   ];
 
   # Let Home Manager install and manage itself.
