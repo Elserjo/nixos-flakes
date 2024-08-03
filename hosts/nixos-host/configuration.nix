@@ -11,7 +11,7 @@
     # ../../desktop/sway.nix
     ../../users/backuppc.nix
     ../../services/sound.nix
-    ../../services/flatpak.nix
+    # ../../services/flatpak.nix
     ../../services/syncthing.nix
     ../../programs/virtualbox.nix
     ../../programs/steam.nix

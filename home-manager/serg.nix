@@ -45,6 +45,7 @@
     wireplumber
     nekoray
     p7zip
+    pcsx2
   ];
 
   # Let Home Manager install and manage itself.
