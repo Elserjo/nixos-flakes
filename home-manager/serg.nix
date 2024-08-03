@@ -37,7 +37,6 @@
     libreoffice
     qpdfview
     qbittorrent
-    kdenlive
     vlc
     telegram-desktop
     upscayl
@@ -45,6 +44,7 @@
     nicotine-plus
     wireplumber
     nekoray
+    p7zip
   ];
 
   # Let Home Manager install and manage itself.

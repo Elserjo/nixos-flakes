@@ -31,11 +31,13 @@
   #Sway settings for my local user
   home-manager.users.serg = {
     #I will use these packages only with sway
-    home.packages = with pkgs; [ musikcube mpv transmission-gtk oculante ];
+    home.packages = with pkgs; [ oculante ];
 
     wayland.windowManager.sway = {
       enable = true;
-      # wrapperFeatures = { gtk = true; };
+      wrapperFeatures = { gtk = true; };
+      # See https://www.reddit.com/r/NixOS/comments/1c9n1qk/nixosrebuild_of_sway_failing_with_unable_to/
+      checkConfig = false;
       config = rec {
         modifier = "Mod4";
         bars = [{
@@ -48,7 +50,6 @@
           "2" = [{ app_id = "org.telegram.desktop"; }];
           "3" = [{ app_id = "foot"; }];
           "4" = [
-            { app_id = "transmission-gtk"; }
             { app_id = "org.nicotine_plus.Nicotine"; }
           ];
         };
@@ -84,7 +85,7 @@
       # See good example of swaylock and swayidle
       # https://www.reddit.com/r/swaywm/comments/afu6cd/how_to_turn_off_the_screen_after_locking_with/
       extraConfig = ''
-        output * bg $HOME/Wallpapers/wallhaven-w85r9q.jpg fill
+        output * bg $HOME/Wallpapers/wallhaven-j3pxeq_2560x1440.png fill
         input "type:keyboard" {
             xkb_layout us,ru
             xkb_options grp:win_space_toggle
