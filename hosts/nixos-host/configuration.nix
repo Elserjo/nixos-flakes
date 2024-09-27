@@ -22,10 +22,12 @@
   boot.loader.systemd-boot.enable = true;
 
   # change default linux kernel to xandmod
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.kernelPackages = pkgs.linuxPackages_xanmod;
 
   # networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
+  # networking.proxy.httpsProxy= "http://127.0.0.1:2080";
+  # networking.proxy.httpProxy= "http://127.0.0.1:2080";
 
   networking.firewall = {
     allowedTCPPorts = [ 2234 ];
@@ -84,7 +86,15 @@
   ];
 
   fonts.enableDefaultPackages = true;
-  environment.systemPackages = with pkgs; [ vim htop nix-tree ];
+  # fonts.fontconfig = {
+  #   defaultFonts = {
+  #     serif = [ "Liberation Serif" ];
+  #     sansSerif = [ "Liberation Sans" ];
+  #     monospace = [ "Liberation Mono" ];
+  #   };
+  # };
+
+  environment.systemPackages = with pkgs; [ vim htop nix-tree p7zip ];
 
   #By default NixOS cpu governor is powersave
   #powerManagement.cpuFreqGovernor = "performance";

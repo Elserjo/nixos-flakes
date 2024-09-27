@@ -29,6 +29,7 @@
     picard
     keepassxc
     cmus
+    strawberry-qt6
     # modifications.tdesktop
     emacs-gtk
     freefilesync
@@ -44,6 +45,7 @@
     nicotine-plus
     wireplumber
     nekoray
+    mosh
     p7zip
     pcsx2
   ];
