@@ -26,8 +26,9 @@
 
   # networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
-  # networking.proxy.httpsProxy= "http://127.0.0.1:2080";
-  # networking.proxy.httpProxy= "http://127.0.0.1:2080";
+  # networking.proxy.default= "";
+  # networking.proxy.httpProxy= "127.0.0.10:1010";
+  # networking.proxy.httpsProxy= "127.0.0.10:1010";
 
   networking.firewall = {
     allowedTCPPorts = [ 2234 ];
