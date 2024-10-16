@@ -7,48 +7,28 @@
   home.homeDirectory = "/home/serg";
 
   imports = [
-    ./xdg.nix
+    ../../home-manager/xdg.nix
     # ./programs/chromium.nix
     # ./programs/firefox.nix
-    ./programs/git.nix
-    ./programs/vim.nix
-    ./programs/direnv.nix
-    ./programs/htop.nix
+    ../../home-manager/programs/git.nix
+    ../../home-manager/programs/vim.nix
+    ../../home-manager/programs/direnv.nix
+    ../../home-manager/programs/htop.nix
+    ../../scripts/music.nix
   ];
 
   nixpkgs = { overlays = [ outputs.overlays.modifications ]; };
 
   home.packages = with pkgs; [
     radeontop
-    firefox
-    gimp
-    geeqie
-    mkvtoolnix
-    flacon
-    mediainfo-gui
-    picard
-    keepassxc
-    cmus
-    strawberry-qt6
     # modifications.tdesktop
-    emacs-gtk
-    freefilesync
     #If i need unstable: "unstable.nicotine"
-    nicotine-plus
-    libreoffice
-    qpdfview
-    qbittorrent
-    vlc
-    telegram-desktop
-    upscayl
-    tor-browser
-    nicotine-plus
-    wireplumber
-    nekoray
     mosh
-    p7zip
-    pcsx2
+    ventoy-full
+    nixfmt
+    emacs-gtk
   ];
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  home.stateVersion = "24.05";
 }

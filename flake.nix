@@ -1,6 +1,4 @@
 {
-  description = "My test of nix flake";
-
   inputs = {
     nixpkgs = {
       type = "github";
@@ -13,7 +11,7 @@
       type = "github";
       owner = "NixOS";
       repo = "nixpkgs";
-      ref = "release-23.05";
+      ref = "release-24.05";
     };
 
     home-manager = {
@@ -33,8 +31,7 @@
     };
   };
 
-  outputs =
-    { self, nixpkgs, home-manager, arkenfox-nixos, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";
@@ -49,11 +46,19 @@
           home-manager.sharedModules = [ ./modules/common ];
         }
       ];
-    in {
+    in
+    {
       overlays = import ./overlays { inherit inputs; };
+      # formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [ ./hosts/nixos-host/configuration.nix ] ++ commonModules;
       };
+      homeConfigurations.opensuse-pc =
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs { system = "${system}"; };
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [ ./hosts/opensuse-pc/serg.nix ];
+        };
     };
 }

@@ -11,7 +11,8 @@ let
       [ pkgs.libnotify pkgs.rsync pkgs.coreutils pkgs.util-linux ];
   };
 
-in {
+in
+{
   systemd.user.services."${garminService}" = {
     description = "Backup garmin activities when Garmin 830 is connected";
     requires = [ "media-GARMIN.mount" ];

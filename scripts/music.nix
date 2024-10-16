@@ -26,34 +26,32 @@ let
   '';
 
 in {
-  home-manager.users.serg = {
-    xdg.desktopEntries = {
-      musicLib_se180 = {
-        type = "Application";
-        name = "add-to-music-lib-se180";
-        noDisplay = true;
-        terminal = true;
-        exec = "${musicLib}/bin/music-lib ${futura_outputDir} %F";
-        mimeType = [ "audio/flac" "audio/x-flac" ];
-      };
-      musicLib_x5iii = {
-        type = "Application";
-        name = "add-to-music-lib-x5iii";
-        noDisplay = true;
-        terminal = true;
-        exec = "${musicLib}/bin/music-lib ${fiio_outputDir} %F";
-        mimeType = [ "audio/flac" "audio/x-flac" ];
-      };
-      resizeImg = {
-        type = "Application";
-        name = "resize-image";
-        noDisplay = true;
-        terminal = false;
-        exec = "${resizeImg}/bin/resize-img %F";
-        mimeType = [ "image/jpg" "image/x-jpg" ];
-      };
+  xdg.desktopEntries = {
+    musicLib_se180 = {
+      type = "Application";
+      name = "add-to-music-lib-se180";
+      noDisplay = true;
+      terminal = true;
+      exec = "${musicLib}/bin/music-lib ${futura_outputDir} %F";
+      mimeType = [ "audio/flac" "audio/x-flac" ];
     };
-    # Use music-lib script in external programs
-    home.packages = [ musicLibWrapper ];
+    musicLib_x5iii = {
+      type = "Application";
+      name = "add-to-music-lib-x5iii";
+      noDisplay = true;
+      terminal = true;
+      exec = "${musicLib}/bin/music-lib ${fiio_outputDir} %F";
+      mimeType = [ "audio/flac" "audio/x-flac" ];
+    };
+    resizeImg = {
+      type = "Application";
+      name = "resize-image";
+      noDisplay = true;
+      terminal = false;
+      exec = "${resizeImg}/bin/resize-img %F";
+      mimeType = [ "image/jpg" "image/x-jpg" ];
+    };
   };
+  # Use music-lib script in external programs
+  home.packages = [ musicLibWrapper ];
 }

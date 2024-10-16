@@ -69,9 +69,9 @@
       (with pkgs; [ gedit qadwaitadecorations-qt6 ]);
     # ++ (with pkgs.gnome; [ gnome-terminal ]);
     sessionVariables = {
-    # See bug https://bugs.launchpad.net/ubuntu/+source/gnome-settings-daemon/+bug/1971434
+      # See bug https://bugs.launchpad.net/ubuntu/+source/gnome-settings-daemon/+bug/1971434
       # MUTTER_DEBUG_ENABLE_ATOMIC_KMS = "0";
-      QT_WAYLAND_DECORATION="adwaita";
+      QT_WAYLAND_DECORATION = "adwaita";
     };
   };
   #Need for qadwaitatheme

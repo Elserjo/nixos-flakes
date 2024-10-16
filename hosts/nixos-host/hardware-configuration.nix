@@ -12,9 +12,9 @@
   boot.kernelModules = [ "kvm-intel" "nct6775" ];
   boot.extraModulePackages = [ ];
 
-   boot.initrd.luks.devices."root" = {
-     device = "/dev/disk/by-uuid/72175e17-e454-468e-b375-91b215f8a348";
-   };
+  boot.initrd.luks.devices."root" = {
+    device = "/dev/disk/by-uuid/72175e17-e454-468e-b375-91b215f8a348";
+  };
 
   environment.etc.crypttab.text = ''
     data /dev/disk/by-uuid/814a3c86-9694-4fcd-83ab-e58fb67e6f76 /etc/secrets/keyfile.bin

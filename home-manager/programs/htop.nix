@@ -24,6 +24,6 @@
     cpu_count_from_zero = false;
   } // (with config.lib.htop;
     leftMeters [ (bar "AllCPUs2") (bar "Memory") (bar "Swap") ])
-    // (with config.lib.htop;
-      rightMeters [ (text "Tasks") (text "LoadAverage") (text "Uptime") ]);
+  // (with config.lib.htop;
+    rightMeters [ (text "Tasks") (text "LoadAverage") (text "Uptime") ]);
 }

@@ -16,7 +16,8 @@ let
     "x-gvfs-hide"
     "nofail"
   ];
-in {
+in
+{
   users.users = {
     backuppc = {
       description = "User for BackupPC tasks";
