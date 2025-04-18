@@ -60,5 +60,11 @@
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [ ./hosts/opensuse-pc/serg.nix ];
         };
+      homeConfigurations.arch-pc =
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs { system = "${system}"; };
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [ ./hosts/arch-pc/serg.nix ];
+        };
     };
 }
