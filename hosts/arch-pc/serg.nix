@@ -25,6 +25,9 @@
     #If i need unstable: "unstable.nicotine"
     mosh
     nixfmt
+    yt-dlp
+    # nmap
+    # tcpdump
   ];
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
