@@ -26,6 +26,7 @@
     mosh
     nixfmt
     yt-dlp
+    tesseract
     # nmap
     # tcpdump
   ];
