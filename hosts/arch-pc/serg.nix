@@ -27,6 +27,7 @@
     nixfmt
     yt-dlp
     shfmt
+    ffmpeg
     # nmap
     # tcpdump
   ];
