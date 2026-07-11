@@ -24,14 +24,10 @@ in
                     inputs.home-manager.darwinModules.home-manager
                     homeConfig
                     { nixpkgs.hostPlatform = "aarch64-darwin"; }
-                    ( { pkgs, ...}: {
-                        system.stateVersion = 4;
-                        nix.enable = false;
-                        home-manager.users.serg.home.homeDirectory = self.inputs.nixpkgs.lib.mkForce "/Users/serg";
-                        environment.systemPackages = [
-                            pkgs.hello
-                        ];
-                    })
+                    { home-manager.users.serg.home.homeDirectory = 
+                        self.inputs.nixpkgs.lib.mkForce "/Users/serg"; }
+
+                    ./air-sergej/configuration.nix
                 ];
             };
         };
