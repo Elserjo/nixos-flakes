@@ -1,11 +1,15 @@
 { pkgs, ... }:
 
 {
-    system.stateVersion = 4;
+    system.stateVersion = 7;
 
     nix.enable = false;
 
-    environment.systemPackages = [
-        pkgs.hello
+    environment.systemPackages = with pkgs; [
+        hello
+        rsync
+        gcc
+        tmux
+        htop
     ];
 }

@@ -8,6 +8,7 @@ let
             imports = [
             ../../home-manager/programs/git.nix
             ../../home-manager/programs/vim.nix
+            ../../home-manager/programs/htop.nix
             ];
         };
         home-manager.useGlobalPkgs = true;
