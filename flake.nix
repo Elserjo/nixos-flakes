@@ -1,13 +1,7 @@
 {
   inputs = {
-    nixpkgs = {
-      type = "github";
-      owner = "NixOS";
-      repo = "nixpkgs";
-      ref = "nixos-unstable";
-    };
 
-    nixpkgs-stable = {
+    nixpkgs = {
       type = "github";
       owner = "NixOS";
       repo = "nixpkgs";
@@ -18,7 +12,7 @@
       type = "github";
       owner = "nix-community";
       repo = "home-manager";
-      ref = "master";
+      ref = "release-26.05";
       inputs = { nixpkgs.follows = "nixpkgs"; };
     };
 
