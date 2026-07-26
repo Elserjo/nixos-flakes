@@ -1,6 +1,8 @@
-{ inputs, pkgs, lib, self, ... }:
+{ lib, self, ... }:
 
 let 
+    entries = builtins.attrNames (builtins.readDir ./.);
+    configs = builtins.filter (dir: builtins.pathExists (./. + "/${dir}/configuration.nix")) entries;
     homeConfig =  {
         home-manager.users."serg" = {
             home.homeDirectory = "/Users/serg";
@@ -17,20 +19,28 @@ let
     };
 in
 {
-    flake = {
-        darwinConfigurations."Air-Sergej" = 
-            inputs.nix-darwin.lib.darwinSystem {
-                specialArgs = { inherit inputs; };
-                modules = [
-                    inputs.home-manager.darwinModules.home-manager
-                    homeConfig
-                    { nixpkgs.hostPlatform = "aarch64-darwin"; }
-                    { home-manager.users.serg.home.homeDirectory = 
-                        self.inputs.nixpkgs.lib.mkForce "/Users/serg"; }
+    flake.darwinConfigurations = lib.listToAttrs (
+        builtins.map (
+            name:
+            lib.nameValuePair name (
+                self.inputs.nix-darwin.lib.darwinSystem {
+                    specialArgs = { 
+                        inherit (self) inputs;
+                        self = {
+                            darwinModules = self.darwinModules;
+                        };
+                    };
 
-                    ./air-sergej/configuration.nix
-                ];
-            };
-        };
+                    modules = [
+                        self.inputs.home-manager.darwinModules.home-manager
+                        homeConfig
+                        { nixpkgs.hostPlatform = "aarch64-darwin"; }
+                        { home-manager.users.serg.home.homeDirectory = 
+                            self.inputs.nixpkgs.lib.mkForce "/Users/serg"; }
+                        (./. + "/${name}/configuration.nix")
+                    ];
+                }
+            )
+        ) configs
+    );
 }
-
