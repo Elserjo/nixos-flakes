@@ -11,9 +11,13 @@ let
             ../../home-manager/programs/git.nix
             ../../home-manager/programs/vim.nix
             ../../home-manager/programs/htop.nix
+            ../../home-manager/programs/zsh.nix
             ];
         };
         home-manager.useGlobalPkgs = true;
+        home-manager.extraSpecialArgs = {
+            inherit (self) inputs;
+        };
         home-manager.useUserPackages = true;
         home-manager.backupFileExtension = "bak";
     };
