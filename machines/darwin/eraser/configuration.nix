@@ -21,6 +21,7 @@
             "firefox"
             "keepassxc"
             "syncthing-app"
+            "telegram"
         ];
     };
 
@@ -30,5 +31,6 @@
         tmux
         htop
         yt-dlp
+        ffmpeg
     ];
 }
