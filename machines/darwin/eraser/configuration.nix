@@ -7,10 +7,6 @@
 
     nix.enable = false;
 
-    environment.variables = {
-        EDITOR = "vim";
-    };
-
     homebrew = {
         enable = true;
         onActivation = {
@@ -22,6 +18,7 @@
             "keepassxc"
             "syncthing-app"
             "telegram"
+            "openvpn-connect"
         ];
     };
 
