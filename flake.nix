@@ -5,14 +5,14 @@
       type = "github";
       owner = "NixOS";
       repo = "nixpkgs";
-      ref = "release-26.05";
+      ref = "master";
     };
 
     home-manager = {
       type = "github";
       owner = "nix-community";
       repo = "home-manager";
-      ref = "release-26.05";
+      ref = "master";
       inputs = { nixpkgs.follows = "nixpkgs"; };
     };
 
@@ -27,7 +27,7 @@
       type = "github";
       owner = "nix-darwin";
       repo = "nix-darwin";
-      ref = "nix-darwin-26.05";
+      ref = "master";
       inputs = {nixpkgs.follows = "nixpkgs"; };
     };
   };
