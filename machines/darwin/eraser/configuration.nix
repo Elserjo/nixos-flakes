@@ -19,15 +19,19 @@
             "syncthing-app"
             "telegram"
             "openvpn-connect"
+            "libreoffice"
+            "libreoffice-language-pack"
+            "phoenix-slides"
+            "iina"
+            "thunderbird"
         ];
     };
 
     environment.systemPackages = with pkgs; [
-        hello
         rsync
-        tmux
         htop
         yt-dlp
         ffmpeg
+        sshpass
     ];
 }
