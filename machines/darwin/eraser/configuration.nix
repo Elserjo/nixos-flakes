@@ -11,6 +11,7 @@
         enable = true;
         onActivation = {
             autoUpdate = true;
+            upgrade = true;
             cleanup = "zap";
         };
         casks = [
@@ -24,6 +25,7 @@
             "phoenix-slides"
             "iina"
             "thunderbird"
+            "gimp"
         ];
     };
 
@@ -32,6 +34,7 @@
         htop
         yt-dlp
         ffmpeg
+        flac2mp3
         sshpass
     ];
 }
