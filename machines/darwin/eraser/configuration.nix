@@ -26,6 +26,8 @@
             "iina"
             "thunderbird"
             "gimp"
+            "utm"
+            "tor-browser"
         ];
     };
 
