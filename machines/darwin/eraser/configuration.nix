@@ -14,20 +14,23 @@
             upgrade = true;
             cleanup = "zap";
         };
+        caskArgs.require_sha = true;
+        onActivation.extraEnv = {
+            HOMEBREW_NO_ANALYTICS = "1";
+            HOMEBREW_NO_INSECURE_REDIRECT = "1";
+        };
         casks = [
             "firefox"
             "keepassxc"
             "syncthing-app"
-            "telegram"
             "openvpn-connect"
-            "libreoffice"
-            "libreoffice-language-pack"
             "phoenix-slides"
             "iina"
             "thunderbird"
             "gimp"
             "utm"
             "tor-browser"
+            "transmission"
         ];
     };
 
